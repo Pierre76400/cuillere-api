@@ -19,10 +19,6 @@ public class RestaurantControler {
 
 	@GetMapping("/restaurants")
 	List<Restaurant> all() {
-		Restaurant r=new Restaurant();
-		r.setNom("Wapiti");
-		restaurantRepository.save(r);
-
 		List<Restaurant> list = new ArrayList<>();
 		restaurantRepository.findAll().iterator().forEachRemaining(list::add);
 		return list;
