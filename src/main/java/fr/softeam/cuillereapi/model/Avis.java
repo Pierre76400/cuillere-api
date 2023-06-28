@@ -1,10 +1,7 @@
 package fr.softeam.cuillereapi.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class Avis {
@@ -17,6 +14,9 @@ public class Avis {
 	private String auteur;
 
 	private Long note;
+
+	@ManyToOne
+	private Restaurant restaurant;
 
 	public Long getId() {
 		return id;
@@ -48,5 +48,13 @@ public class Avis {
 
 	public void setNote(Long note) {
 		this.note = note;
+	}
+
+	public Restaurant getRestaurant() {
+		return restaurant;
+	}
+
+	public void setRestaurant(Restaurant restaurant) {
+		this.restaurant = restaurant;
 	}
 }

@@ -3,6 +3,8 @@ package fr.softeam.cuillereapi.model;
 
 import jakarta.persistence.*;
 
+//FIXME regarder le pb de mapping
+//Faut il du monodirectionnel ou du bidirectionnel ?
 @Entity
 public class Plat {
 	@Id
@@ -16,6 +18,9 @@ public class Plat {
 	private CategoriePlat categoriePlat;
 
 	private Double prix;
+
+	@ManyToOne
+	private Restaurant restaurant;
 
 	public Long getId() {
 		return id;
@@ -48,4 +53,5 @@ public class Plat {
 	public void setPrix(Double prix) {
 		this.prix = prix;
 	}
+
 }

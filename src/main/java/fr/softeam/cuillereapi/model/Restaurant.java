@@ -1,10 +1,9 @@
 package fr.softeam.cuillereapi.model;
 
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
 
 @Entity
 public class Restaurant {
@@ -17,6 +16,12 @@ public class Restaurant {
 	private String adresse;
 
 	private String vegetarien;
+
+	@OneToMany(mappedBy = "restaurant")
+	private List<Avis> avis;
+
+	@OneToMany(mappedBy = "restaurant")
+	private List<Plat> plats;
 
 	public Long getId() {
 		return id;
@@ -50,4 +55,19 @@ public class Restaurant {
 		this.vegetarien = vegetarien;
 	}
 
+	public List<Avis> getAvis() {
+		return avis;
+	}
+
+	public void setAvis(List<Avis> avis) {
+		this.avis = avis;
+	}
+
+	public List<Plat> getPlats() {
+		return plats;
+	}
+
+	public void setPlats(List<Plat> plats) {
+		this.plats = plats;
+	}
 }
