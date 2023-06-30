@@ -1,0 +1,11 @@
+version: "3.9"
+services:
+  cuillere-api-postgres:
+    image: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: cuillere-api
+      POSTGRES_USER: cuillere-api
+      POSTGRES_PASSWORD: mysecretpassword
