@@ -3,6 +3,7 @@ package fr.softeam.cuillereapi.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
@@ -16,6 +17,8 @@ public class Restaurant {
 	private String adresse;
 
 	private String vegetarien;
+
+	private LocalDateTime dateCreation;
 
 	@OneToMany(mappedBy = "restaurant")
 	private List<Avis> avis;
@@ -69,5 +72,13 @@ public class Restaurant {
 
 	public void setPlats(List<Plat> plats) {
 		this.plats = plats;
+	}
+
+	public LocalDateTime getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(LocalDateTime dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 }

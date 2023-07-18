@@ -15,6 +15,12 @@ public class Avis {
 
 	private Long note;
 
+	/**
+	 @deprecated Ce champ ne sert plus
+	 */
+	@Deprecated
+	private String lieu;
+
 	@ManyToOne
 	private Restaurant restaurant;
 
@@ -56,5 +62,13 @@ public class Avis {
 
 	public void setRestaurant(Restaurant restaurant) {
 		this.restaurant = restaurant;
+	}
+
+	public String getLieu() {
+		return lieu;
+	}
+
+	public void setLieu(String lieu) {
+		this.lieu = lieu;
 	}
 }
