@@ -1,0 +1,17 @@
+drop table if exists avis cascade;
+drop table if exists categorie_plat cascade;
+drop table if exists plat cascade;
+drop table if exists restaurant cascade;
+drop sequence if exists avis_seq;
+drop sequence if exists plat_seq;
+drop sequence if exists restaurant_seq;
+create sequence avis_seq start with 1 increment by 50;
+create sequence plat_seq start with 1 increment by 50;
+create sequence restaurant_seq start with 1 increment by 50;
+create table avis (id bigint not null, note bigint, restaurant_id bigint, auteur varchar(255), lieu varchar(255), commentaire varchar(255), primary key (id));
+create table categorie_plat (code varchar(255) not null, libelle varchar(255), primary key (code));
+create table plat (prix float(53), id bigint not null, restaurant_id bigint, categorie_plat_code varchar(255), libelle varchar(255), primary key (id));
+create table restaurant (id bigint not null, adresse varchar(255), nom varchar(255), vegetarien varchar(255),date_creation timestamp(6),  primary key (id));
+alter table if exists avis add constraint FKlnqxqbj17wf05a72bwxveia61 foreign key (restaurant_id) references restaurant;
+alter table if exists plat add constraint FKgta4x9b0j52n4iv8hdxsi8diu foreign key (categorie_plat_code) references categorie_plat;
+alter table if exists plat add constraint FKin5qi31b5pgotcgnq4ttf71f1 foreign key (restaurant_id) references restaurant;

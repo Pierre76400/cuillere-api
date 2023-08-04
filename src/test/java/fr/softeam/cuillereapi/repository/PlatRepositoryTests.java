@@ -1,6 +1,7 @@
 package fr.softeam.cuillereapi.repository;
 
 
+import fr.softeam.cuillereapi.CuillereApiApplication;
 import fr.softeam.cuillereapi.model.CategoriePlat;
 import fr.softeam.cuillereapi.model.Plat;
 import fr.softeam.cuillereapi.model.Restaurant;
@@ -10,7 +11,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
-@SpringBootTest
+@SpringBootTest(classes = CuillereApiApplication.class)
 class PlatRepositoryTests {
 	@Autowired
 	private PlatRepository platRepository;

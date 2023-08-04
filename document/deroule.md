@@ -74,6 +74,23 @@ Ne pas utiliser des clob à la place varchar
 
 # Hibernate
 Pagination, cache
+## Afficher les requêtes
+Faire appel au service qui récupére les restaurants(GET localhost:8080/restaurants)
+Pour afficher les requêtes : logging.level.org.hibernate.SQL=DEBUG
+
+## Eviter les N+1
+Suite à l'appel au service qui récupére les restaurants(GET localhost:8080/restaurants) on voit une requête N+1
+Il faut modifier la requête du repository RestaurantCustomRepository.getDetailsById pour charger les palts
+oldRequete => from Restaurant r join fetch r.plats where r.id=:idRestaurant
+
+
+## Lazy vs Eager
+
+## Le cache
+
+## Pagination
+
+## Utiliser les opérations bulk à la place d'opération unitaire
 
 # Refacto
 Une refacto 

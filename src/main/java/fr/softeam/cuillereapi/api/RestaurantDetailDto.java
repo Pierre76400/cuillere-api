@@ -1,10 +1,14 @@
 package fr.softeam.cuillereapi.api;
 
-public class RestaurantDto {
+import java.util.List;
+
+public class RestaurantDetailDto {
 	private Long id;
 	private String nom;
 	private String adresse;
 	private boolean vegetarien;
+
+	private List<PlatDto> plats;
 
 	public Long getId() {
 		return id;
@@ -36,5 +40,17 @@ public class RestaurantDto {
 
 	public void setVegetarien(boolean vegetarien) {
 		this.vegetarien = vegetarien;
+	}
+
+	public boolean isVegetarien() {
+		return vegetarien;
+	}
+
+	public List<PlatDto> getPlats() {
+		return plats;
+	}
+
+	public void setPlats(List<PlatDto> plats) {
+		this.plats = plats;
 	}
 }

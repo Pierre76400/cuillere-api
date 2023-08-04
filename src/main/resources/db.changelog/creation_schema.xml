@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+         http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd">
+
+    <changeSet id="change_0_0_1" author="pleplay">
+        <createTable tableName="categorie_plat" remarks="Categorie de plat">
+            <column name="code" type="varchar(255)">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="libelle" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="change_0_0_2" author="pleplay">
+        <createTable tableName="avis" remarks="Avis sur un restaurant">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="note" type="bigint"/>
+            <!--rajouter fk vers restaurant-->
+            <column name="restaurant_id" type="bigint"/>
+            <column name="auteur" type="varchar(255)"/>
+            <column name="lieu" type="varchar(255)"/>
+            <column name="commentaire" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="change_0_0_3" author="pleplay">
+        <createTable tableName="plat" remarks="Plat d'un restaurant">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="prix" type="float"/>
+            <!--rajouter fk vers restaurant-->
+            <column name="restaurant_id" type="bigint"/>
+            <column name="categorie_plat_code" type="varchar(255)"/>
+            <column name="libelle" type="varchar(255)"/>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="change_0_0_4" author="pleplay">
+        <createTable tableName="restaurant" remarks="Restaurant">
+            <column name="id" type="bigint">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+            <column name="adresse" type="varchar(255)"/>
+            <column name="nom" type="varchar(255)"/>
+            <column name="vegetarien" type="varchar(255)"/>
+            <column name="date_creation" type="datetime"/>
+        </createTable>
+    </changeSet>
+
+
+    <changeSet id="change_0_0_5" author="pleplay">
+        <addForeignKeyConstraint baseTableName="avis" baseColumnNames="restaurant_id"
+                                 constraintName="fk_avis_restaurant"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="change_0_0_6" author="pleplay">
+        <addForeignKeyConstraint baseTableName="plat" baseColumnNames="restaurant_id"
+                                 constraintName="fk_plat_restaurant"
+                                 referencedTableName="restaurant"
+                                 referencedColumnNames="id"/>
+    </changeSet>
+
+    <changeSet id="change_0_0_7" author="pleplay">
+        <addForeignKeyConstraint baseTableName="plat" baseColumnNames="categorie_plat_code"
+                                 constraintName="fk_plat_categorie"
+                                 referencedTableName="categorie_plat"
+                                 referencedColumnNames="code"/>
+    </changeSet>
+</databaseChangeLog>
