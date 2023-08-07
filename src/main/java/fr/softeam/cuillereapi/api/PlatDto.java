@@ -9,6 +9,8 @@ public class PlatDto {
 
 	private String categoriePlat;
 
+	private String libelleCategoriePlat;
+
 	private Double prix;
 
 	public String getLibelle() {
@@ -33,5 +35,13 @@ public class PlatDto {
 
 	public void setPrix(Double prix) {
 		this.prix = prix;
+	}
+
+	public String getLibelleCategoriePlat() {
+		return libelleCategoriePlat;
+	}
+
+	public void setLibelleCategoriePlat(String libelleCategoriePlat) {
+		this.libelleCategoriePlat = libelleCategoriePlat;
 	}
 }

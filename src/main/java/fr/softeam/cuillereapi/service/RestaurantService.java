@@ -1,5 +1,6 @@
 package fr.softeam.cuillereapi.service;
 
+import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.PlatDto;
 import fr.softeam.cuillereapi.api.RestaurantDetailDto;
 import fr.softeam.cuillereapi.model.Plat;
@@ -33,19 +34,10 @@ public class RestaurantService {
 		dto.setVegetarien(r.getVegetarien().equals("OUI")?true:false);
 
 		List<PlatDto> plats=new ArrayList<>();
-		r.getPlats().forEach(p->plats.add(platEntityToDto(p)));
+		r.getPlats().forEach(p->plats.add(ConvertUtil.platEntityToDto(p)));
 		dto.setPlats(plats);
 
 		return dto;
 	}
 
-	private PlatDto platEntityToDto(Plat p) {
-		PlatDto dto = new PlatDto();
-
-		dto.setCategoriePlat(p.getCategoriePlat().getCode());
-		dto.setLibelle(p.getLibelle());
-		dto.setPrix(p.getPrix());
-
-		return dto;
-	}
 }

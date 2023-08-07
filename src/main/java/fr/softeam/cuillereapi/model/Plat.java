@@ -2,6 +2,7 @@ package fr.softeam.cuillereapi.model;
 
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 //FIXME regarder le pb de mapping
 //Faut il du monodirectionnel ou du bidirectionnel ?
@@ -13,7 +14,8 @@ public class Plat {
 
 	private String libelle;
 
-	@ManyToOne
+	@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "categorie_plat_code")
 	private CategoriePlat categoriePlat;
 

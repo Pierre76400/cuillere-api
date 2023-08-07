@@ -83,14 +83,32 @@ Suite à l'appel au service qui récupére les restaurants(GET localhost:8080/re
 Il faut modifier la requête du repository RestaurantCustomRepository.getDetailsById pour charger les palts
 oldRequete => from Restaurant r join fetch r.plats where r.id=:idRestaurant
 
-
 ## Lazy vs Eager
+Je lance RestaurantControler.getPlat => ON s'apercoit qu'il n'y a des N+1
+TODOrequête findPlatByIdRestaurant
 
 ## Le cache
+Sur la méthode getPlat
+Activer le cache dans application.properties:
+
+hibernate.cache.use_second_level_cache=true
+hibernate.cache.region.factory_class=org.hibernate.cache.ehcache.EhCacheRegionFactory
+
+Rajouter l'annocation sur CategoriePlat:
+
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+
+ACTUELLEMENT NE MARCHE PAS
+
 
 ## Pagination
+Sur la méthode recherche restaurant
 
 ## Utiliser les opérations bulk à la place d'opération unitaire
+
+
+
 
 # Refacto
 Une refacto 

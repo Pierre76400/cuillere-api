@@ -1,9 +1,11 @@
 package fr.softeam.cuillereapi.controler;
 
+import fr.softeam.cuillereapi.api.PlatDto;
 import fr.softeam.cuillereapi.api.RestaurantDetailDto;
 import fr.softeam.cuillereapi.api.RestaurantDto;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
+import fr.softeam.cuillereapi.service.PlatService;
 import fr.softeam.cuillereapi.service.RestaurantService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,10 +20,12 @@ public class RestaurantControler {
 
 	private final RestaurantRepository restaurantRepository;
 	private final RestaurantService restaurantService;
+	private final PlatService platService;
 
-	RestaurantControler(RestaurantRepository restaurantRepository, RestaurantService restaurantService) {
+	RestaurantControler(RestaurantRepository restaurantRepository, RestaurantService restaurantService,PlatService platService) {
 		this.restaurantRepository = restaurantRepository;
 		this.restaurantService = restaurantService;
+		this.platService = platService;
 	}
 
 	@GetMapping("/restaurants")
@@ -37,6 +41,10 @@ public class RestaurantControler {
 		return restaurantService.getRestaurant(idRestaurant);
 	}
 
+	@GetMapping("/restaurants/{idRestaurant}/plats")
+	List<PlatDto> getPlats(@PathVariable Long idRestaurant) {
+		return platService.getPlats(idRestaurant);
+	}
 
 	private RestaurantDto restaurantEntityToDto(Restaurant r) {
 		RestaurantDto dto=new RestaurantDto();
