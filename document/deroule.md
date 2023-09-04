@@ -128,6 +128,8 @@ Faire un refacto sur une méthode qui retourne le détail d'un restaurant:
 # Partie Asynchrone
 Simuler l'heure de pointe (cad les personnes qui donne les avis et qui consulte les restaurant de 20 à 22h)
 
+
+
 # Obsolescence
 Par exemple du code fait pour un truc exceptionnel (fête des méres 2022) => Outil détection code mort
 Code dupliqué

@@ -1,16 +1,17 @@
 package fr.softeam.cuillereapi.controler;
 
 import fr.softeam.cuillereapi.ConvertUtil;
+import fr.softeam.cuillereapi.api.AvisCreationDto;
 import fr.softeam.cuillereapi.api.AvisDto;
 import fr.softeam.cuillereapi.model.Avis;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.AvisRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
+import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,9 +21,12 @@ import java.util.List;
 public class AvisControler {
 
 	private final AvisRepository avisRepository;
+	private final RestaurantRepository restaurantRepository;
 
-	AvisControler(AvisRepository avisRepository) {
+	AvisControler(AvisRepository avisRepository,
+				  RestaurantRepository restaurantRepository) {
 		this.avisRepository = avisRepository;
+		this.restaurantRepository = restaurantRepository;
 	}
 
 	@GetMapping("/avis")
@@ -30,6 +34,21 @@ public class AvisControler {
 		List<AvisDto> aviss = new ArrayList<>();
 		avisRepository.findAll().iterator().forEachRemaining(avis -> aviss.add(ConvertUtil.avisEntityToDto(avis)));
 		return aviss;
+	}
+
+	@PostMapping("/avis")
+	public Long ajouterAvis(@RequestBody AvisCreationDto avisCreationDto) {
+
+		Avis entity=new Avis();
+		entity.setAuteur(avisCreationDto.getAuteur());
+		entity.setCommentaire(avisCreationDto.getCommentaire());
+		entity.setNote(avisCreationDto.getNote());
+		entity.setRestaurant(restaurantRepository.findById(avisCreationDto.getIdRestaurant()).get());
+		entity.setDateCreation(LocalDate.now());
+
+		avisRepository.save(entity);
+
+		return 1l;
 	}
 
 	@DeleteMapping("/avis/_obsoletes")
