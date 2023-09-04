@@ -9,6 +9,7 @@ import fr.softeam.cuillereapi.service.PlatService;
 import fr.softeam.cuillereapi.service.RestaurantService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -54,6 +55,21 @@ public class RestaurantControler {
 
 		return dto;
 	}
+
+	//TODO Est ce que l'url est bonne ?
+	@GetMapping("/restaurants/_search")
+	List<RestaurantDetailDto> rechercherRestaurant(@RequestParam String  nomRestaurant) {
+		//TODO mettre en place la gestion des erreurs
+		return restaurantService.rechercherRestaurant(nomRestaurant);
+	}
+
+
+	@GetMapping("/restaurants/_search2")
+	List<RestaurantDetailDto> rechercherRestaurant(@RequestParam String  nomRestaurant,@RequestParam int numPage,@RequestParam int taillePage) {
+		//TODO mettre en place la gestion des erreurs
+		return restaurantService.rechercherRestaurant(nomRestaurant,numPage,taillePage);
+	}
+
 
 
 }

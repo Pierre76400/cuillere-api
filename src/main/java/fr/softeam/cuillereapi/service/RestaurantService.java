@@ -8,19 +8,25 @@ import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.RestaurantCustomRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import jakarta.persistence.EntityManager;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RestaurantService {
 
 	private RestaurantCustomRepository repository;
+	private final RestaurantRepository restaurantRepository;
 
-	public RestaurantService(RestaurantCustomRepository repository) {
+	public RestaurantService(RestaurantCustomRepository repository,
+							 RestaurantRepository restaurantRepository) {
 		this.repository = repository;
+		this.restaurantRepository = restaurantRepository;
 	}
 
 	public RestaurantDetailDto getRestaurant(Long idRestaurant) {
@@ -40,4 +46,13 @@ public class RestaurantService {
 		return dto;
 	}
 
+	public List<RestaurantDetailDto> rechercherRestaurant(String nomRestaurant) {
+		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant).stream().map(r->restaurantEntityToDetailDto(r)).collect(Collectors.toList());
+	}
+
+
+	public List<RestaurantDetailDto> rechercherRestaurant(String nomRestaurant,int numPage,int taillePage) {
+		Pageable pageable= PageRequest.of(numPage,taillePage);
+		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant,pageable).stream().map(r->restaurantEntityToDetailDto(r)).collect(Collectors.toList());
+	}
 }
