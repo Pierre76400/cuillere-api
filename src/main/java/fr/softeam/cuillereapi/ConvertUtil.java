@@ -37,6 +37,7 @@ public class ConvertUtil {
 		dto.setAuteur(avis.getAuteur());
 		dto.setCommentaire(avis.getCommentaire());
 		dto.setNote(avis.getNote());
+		dto.setDateCreation(avis.getDateCreation());
 
 		return dto;
 	}

@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -137,6 +138,8 @@ public class DatabaseService {
 				avis.setCommentaire(adjectifsNegatifs.get(random.nextInt(adjectifsNegatifs.size())));
 			}
 			avis.setLieu("Paris");
+			avis.setDateCreation(LocalDate.of(2016+random.nextInt(7), 1+random.nextInt(12), 1+random.nextInt(23)));
+
 			aviss.add(avis);
 		}
 		return aviss;

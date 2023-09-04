@@ -3,6 +3,9 @@ package fr.softeam.cuillereapi.model;
 
 import jakarta.persistence.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
 @Entity
 public class Avis {
 	@Id
@@ -23,6 +26,8 @@ public class Avis {
 
 	@ManyToOne
 	private Restaurant restaurant;
+
+	private LocalDate dateCreation;
 
 	public Long getId() {
 		return id;
@@ -70,5 +75,13 @@ public class Avis {
 
 	public void setLieu(String lieu) {
 		this.lieu = lieu;
+	}
+
+	public LocalDate getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(LocalDate dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 }

@@ -21,7 +21,7 @@ insert into plat (id,categorie_plat_code,libelle,prix,restaurant_id)
     values (NEXTVAL('plat_seq'),'DES','Eclair au chocolat',4.2,1);
 
 --Avis
-insert into avis (id,auteur,commentaire,note,restaurant_id) values (NEXTVAL('avis_seq'),'Pierre','Génial',5,1);
-insert into avis (id,auteur,commentaire,note,restaurant_id) values (NEXTVAL('avis_seq'),'Alfred','Bof',2,1);
-insert into avis (id,auteur,commentaire,note,restaurant_id) values (NEXTVAL('avis_seq'),'Nicolas','Bien',4,1);
-insert into avis (id,auteur,commentaire,note,restaurant_id) values (NEXTVAL('avis_seq'),'Anne','',4,1);
+insert into avis (id,auteur,commentaire,note,restaurant_id,date_creation) values (NEXTVAL('avis_seq'),'Pierre','Génial',5,1,'2020-03-05');
+insert into avis (id,auteur,commentaire,note,restaurant_id,date_creation) values (NEXTVAL('avis_seq'),'Alfred','Bof',2,1,'2020-08-05');
+insert into avis (id,auteur,commentaire,note,restaurant_id,date_creation) values (NEXTVAL('avis_seq'),'Nicolas','Bien',4,1,'2004-03-05');
+insert into avis (id,auteur,commentaire,note,restaurant_id,date_creation) values (NEXTVAL('avis_seq'),'Anne','',4,1,'2001-03-05');

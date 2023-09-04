@@ -1,5 +1,7 @@
 package fr.softeam.cuillereapi.api;
 
+import java.time.LocalDate;
+
 public class AvisDto {
 
 
@@ -9,7 +11,7 @@ public class AvisDto {
 
 	private Long note;
 
-
+	private LocalDate dateCreation;
 	public String getCommentaire() {
 		return commentaire;
 	}
@@ -32,5 +34,13 @@ public class AvisDto {
 
 	public void setNote(Long note) {
 		this.note = note;
+	}
+
+	public LocalDate getDateCreation() {
+		return dateCreation;
+	}
+
+	public void setDateCreation(LocalDate dateCreation) {
+		this.dateCreation = dateCreation;
 	}
 }
