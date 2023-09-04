@@ -97,7 +97,13 @@ Il suffit de rajouter l'annotation sur CategoriePlat:
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
 
 ## Pagination
-Sur la méthode recherche restaurant
+Lancer la recherche restaurant "/restaurants/_search"
+=> Cela retourne l'ensemble des résultats, c'est lent et volumineux
+Généralement seul les premiers résultats sont pertinents.
+Il faut paginer ("/restaurants/_search2")
+
+TODO : Faut il mettre cette partie coté IHM ou coté back ?
+TODO : Tester sur la base docker
 
 ## Utiliser les opérations bulk à la place d'opération unitaire
 
