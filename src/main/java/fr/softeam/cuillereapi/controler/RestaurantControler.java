@@ -1,5 +1,6 @@
 package fr.softeam.cuillereapi.controler;
 
+import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.PlatDto;
 import fr.softeam.cuillereapi.api.RestaurantDetailDto;
 import fr.softeam.cuillereapi.api.RestaurantDto;
@@ -32,7 +33,7 @@ public class RestaurantControler {
 	@GetMapping("/restaurants")
 	List<RestaurantDto> all() {
 		List<RestaurantDto> list = StreamSupport.stream(restaurantRepository.findAll().spliterator(), false)
-			.map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
+												.map(r-> ConvertUtil.restaurantEntityToDto(r)).collect(Collectors.toList());
 		return list;
 	}
 
@@ -45,15 +46,6 @@ public class RestaurantControler {
 	@GetMapping("/restaurants/{idRestaurant}/plats")
 	List<PlatDto> getPlats(@PathVariable Long idRestaurant) {
 		return platService.getPlats(idRestaurant);
-	}
-
-	private RestaurantDto restaurantEntityToDto(Restaurant r) {
-		RestaurantDto dto=new RestaurantDto();
-		dto.setNom(r.getNom());
-		dto.setAdresse(r.getAdresse());
-		dto.setVegetarien(r.getVegetarien().equals("OUI")?true:false);
-
-		return dto;
 	}
 
 	//TODO Est ce que l'url est bonne ?
