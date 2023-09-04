@@ -1,5 +1,7 @@
 package fr.softeam.cuillereapi.controler;
 
+import fr.softeam.cuillereapi.ConvertUtil;
+import fr.softeam.cuillereapi.api.AvisDto;
 import fr.softeam.cuillereapi.model.Avis;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.AvisRepository;
@@ -21,9 +23,9 @@ public class AvisControler {
 	}
 
 	@GetMapping("/avis")
-	List<Avis> all() {
-		List<Avis> list = new ArrayList<>();
-		avisRepository.findAll().iterator().forEachRemaining(list::add);
-		return list;
+	List<AvisDto> all() {
+		List<AvisDto> aviss = new ArrayList<>();
+		avisRepository.findAll().iterator().forEachRemaining(avis -> aviss.add(ConvertUtil.avisEntityToDto(avis)));
+		return aviss;
 	}
 }
