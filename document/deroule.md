@@ -106,12 +106,24 @@ TODO : Faut il mettre cette partie coté IHM ou coté back ?
 TODO : Tester sur la base docker
 
 ## Utiliser les opérations bulk à la place d'opération unitaire
+On supprimer tous les commentaires obsolétes (de + de 5 ans)
+On lance la suppression ("avis/_obsoletes")
+En regardant les requêtes, on s'aperçoit qu'il y a un "select" qui retourne l'ensemble des résultats et autant de delete que le nombre de résultat retourné par le sélect
+Pour optimiser il faut une seule requête pour supprimer l'ensemble des résultats
+On lance la suppression avec le bulk ("avis/_obsoletesBULK")
 
-
+TODO : Tester sur la base docker (avec et sans bulk ,en fonction du temps de traitement je lancerai ou non les 2 suppressions en démo) 
 
 
 # Refacto
 Une refacto 
+
+Faire un refacto sur une méthode qui retourne le détail d'un restaurant:
+- Récupére les entity via des requêtes 
+- Calcule la distance
+- La méthode prend en paramétre un booléen "mile" pour indiquer si on doit convertir ou pas en mile
+- Retourne les avis les plus pertinents
+
 
 # Partie Asynchrone
 Simuler l'heure de pointe (cad les personnes qui donne les avis et qui consulte les restaurant de 20 à 22h)
