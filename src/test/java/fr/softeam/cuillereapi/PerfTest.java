@@ -19,13 +19,18 @@ public class PerfTest {
 	//
 	@Test
 	void testParrallelGetRestaurant(){
-		IntStream.range(0, 1000000).parallel().forEach(x->callGetRestaurant());
+		IntStream.range(0, 1000_000).parallel().forEach(x->callGetRestaurant());
 	}
 
 
 	@Test
 	void testCreerAvis(){
 		callPostAvis();
+	}
+
+	@Test
+	void testParrallelCreerAvis(){
+		IntStream.range(0, 1000).parallel().forEach(x->callPostAvis());
 	}
 
 	private static void callGetRestaurant() {
@@ -54,6 +59,6 @@ public class PerfTest {
 		ResponseEntity<Long> response
 			= restTemplate.postForEntity(fooResourceUrl ,  request, Long.class);
 		System.out.println(" " + Thread.currentThread().getName());
-		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.CREATED);
 	}
 }

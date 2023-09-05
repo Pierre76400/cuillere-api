@@ -7,6 +7,7 @@ import fr.softeam.cuillereapi.model.Avis;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.AvisRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class AvisControler {
 	}
 
 	@PostMapping("/avis")
-	public Long ajouterAvis(@RequestBody AvisCreationDto avisCreationDto) {
+	public ResponseEntity<Long> ajouterAvis(@RequestBody AvisCreationDto avisCreationDto) {
 
 		Avis entity=new Avis();
 		entity.setAuteur(avisCreationDto.getAuteur());
@@ -48,7 +49,7 @@ public class AvisControler {
 
 		avisRepository.save(entity);
 
-		return 1l;
+		return new ResponseEntity<>(entity.getId(), HttpStatus.CREATED);
 	}
 
 	@DeleteMapping("/avis/_obsoletes")
