@@ -37,10 +37,6 @@ public class AvisControler {
 		return aviss;
 	}
 
-	@GetMapping("/avis/_count")
-	long count() {
-		return avisRepository.count();
-	}
 	@PostMapping("/avis")
 	public ResponseEntity<Long> ajouterAvis(@RequestBody AvisCreationDto avisCreationDto) {
 
