@@ -7,6 +7,7 @@ import fr.softeam.cuillereapi.model.Avis;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.AvisRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
+import fr.softeam.cuillereapi.service.KafkaProducerService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,10 +25,14 @@ public class AvisControler {
 	private final AvisRepository avisRepository;
 	private final RestaurantRepository restaurantRepository;
 
+	private final KafkaProducerService kafkaProducerService;
+
+
 	AvisControler(AvisRepository avisRepository,
-				  RestaurantRepository restaurantRepository) {
+				  RestaurantRepository restaurantRepository,KafkaProducerService kafkaProducerService) {
 		this.avisRepository = avisRepository;
 		this.restaurantRepository = restaurantRepository;
+		this.kafkaProducerService=kafkaProducerService;
 	}
 
 	@GetMapping("/avis")
@@ -75,5 +80,12 @@ public class AvisControler {
 	public void supprimeAvisObsoletesBulk2() {
 		LocalDate datePurge=LocalDate.now().minusYears(5);
 		avisRepository.deleteBulkByDateCreationLessThan(datePurge);
+	}
+
+	@PostMapping("/avis/kafka")
+	public void sendKafkaMessage() {
+		String message = "Hello, Kafka!";
+		String topic = "my-topic";
+		kafkaProducerService.sendMessage(message, topic);
 	}
 }
