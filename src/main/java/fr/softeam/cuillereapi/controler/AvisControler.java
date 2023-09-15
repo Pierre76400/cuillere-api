@@ -4,16 +4,14 @@ import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.AvisCreationDto;
 import fr.softeam.cuillereapi.api.AvisDto;
 import fr.softeam.cuillereapi.model.Avis;
-import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.AvisRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
-import fr.softeam.cuillereapi.service.KafkaProducerService;
+import fr.softeam.cuillereapi.service.KafkaAvisService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,14 +23,14 @@ public class AvisControler {
 	private final AvisRepository avisRepository;
 	private final RestaurantRepository restaurantRepository;
 
-	private final KafkaProducerService kafkaProducerService;
+	private final KafkaAvisService kafkaAvisService;
 
 
 	AvisControler(AvisRepository avisRepository,
-				  RestaurantRepository restaurantRepository,KafkaProducerService kafkaProducerService) {
+				  RestaurantRepository restaurantRepository,KafkaAvisService kafkaAvisService) {
 		this.avisRepository = avisRepository;
 		this.restaurantRepository = restaurantRepository;
-		this.kafkaProducerService=kafkaProducerService;
+		this.kafkaAvisService=kafkaAvisService;
 	}
 
 	@GetMapping("/avis")
@@ -83,9 +81,8 @@ public class AvisControler {
 	}
 
 	@PostMapping("/avis/kafka")
-	public void sendKafkaMessage() {
-		String message = "Hello, Kafka!";
-		String topic = "my-topic";
-		kafkaProducerService.sendMessage(message, topic);
+	//Rajouter un message spécificique (avec tt les infos sur l'avis) sur un topic dédié
+	public void sendKafkaMessage(@RequestBody AvisCreationDto avisCreationDto) {
+		kafkaAvisService.sendMessage(avisCreationDto);
 	}
 }
