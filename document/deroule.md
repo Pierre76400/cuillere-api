@@ -84,8 +84,8 @@ Il faut modifier la requête du repository RestaurantCustomRepository.getDetails
 oldRequete => from Restaurant r join fetch r.plats where r.id=:idRestaurant
 
 ## Lazy vs Eager
-Je lance RestaurantControler.getPlat => On ne s'apercoit qu'il n'y a des N+1
-TODOrequête findPlatByIdRestaurant
+Je lance RestaurantControler.getPlat => On ne s'apercoit qu'il y a des N+1 car il y a des eager
+TODO requête findPlatByIdRestaurant (on fait une jointure donc on une grosse requête au lieu de 2)
 
 ## Le cache
 Sur la méthode RestaurantControler.getPlat, on s'aperçoit qu'on récupére systématiquement les categorie_plat
