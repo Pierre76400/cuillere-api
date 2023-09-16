@@ -24,6 +24,7 @@
             <column name="auteur" type="varchar(255)"/>
             <column name="lieu" type="varchar(255)"/>
             <column name="commentaire" type="varchar(255)"/>
+            <column name="date_creation" type="datetime"/>
         </createTable>
     </changeSet>
 
