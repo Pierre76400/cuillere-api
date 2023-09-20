@@ -1,6 +1,8 @@
-package fr.softeam.cuillereapi;
+package fr.softeam.cuillereapi.config;
 
 import fr.softeam.cuillereapi.api.AvisCreationDto;
+import io.micrometer.observation.ObservationRegistry;
+import io.micrometer.observation.aop.ObservedAspect;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
 import org.springframework.beans.factory.annotation.Value;
@@ -47,4 +49,8 @@ public class CuillereConfig {
 		return new DefaultKafkaProducerFactory<String, AvisCreationDto>(props);
 	}
 */
+@Bean
+public ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
+	return new ObservedAspect(observationRegistry);
+}
 }

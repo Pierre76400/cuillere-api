@@ -136,3 +136,13 @@ Code dupliqué
 Documentation
 
 # Observabilité et métriques
+https://www.baeldung.com/spring-boot-3-observability
+On peut accéder aux metric via : 
+http://localhost:8080/actuator/metrics/avisService
+Ne pas oublier d'exposer tous les actuators
+    management.endpoints.web.exposure.include=*
+
+TODO : exposer les services Avis dans AvisService
+Exposer service restaurant dans metrics
+PAsser ces metrics à prometheus
+Brancher Grafana ?????
