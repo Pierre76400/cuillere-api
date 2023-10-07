@@ -134,9 +134,12 @@ Simuler l'heure de pointe (cad les personnes qui donne les avis et qui consulte 
 Reste à faire : rajouter conteneur kafka et consommation asynchrone.
 
 # Obsolescence
-Par exemple du code fait pour un truc exceptionnel (fête des méres 2022) => Outil détection code mort
-Code dupliqué
-Documentation
+Il existe des outils pour détecter le code mort 
+Pour détecter le code mort dans eclipse (Ucd detector)
+Directement incorporé dans IntelliJ
+
+Dans IntelliJ => Analyze | Run Inspection by Name... | Unused declaration.
+Préciser dans IntelliJ que l'on considére que le code appellé uniquement dans les TU est inutile ( Inspection option -> Entry Point -> When entry point are in test sources mark callees as (used/unused))
 
 # Observabilité et métriques
 https://www.baeldung.com/spring-boot-3-observability

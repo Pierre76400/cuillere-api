@@ -30,11 +30,8 @@ class RestaurantServiceTest {
     @Mock
     RestaurantCustomRepository repository;
 
-    //FIXME Finir test
-    //FIXME rajouter plat dans le restaurant
+
     //FIXME créer un modelhelper
-    //FIXME Faire test pour feteDesMeres
-    //FIXME Cr&er constantes inutiles
     //FIXME Compléter le () -> déroulé
 
     @Test

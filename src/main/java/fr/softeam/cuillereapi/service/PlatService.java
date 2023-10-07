@@ -15,6 +15,7 @@ import java.util.stream.Collectors;
 @Service
 public class PlatService {
 
+	static public final int TAUX_DE_PLAT=3;
 	private PlatRepository repository;
 
 	public PlatService(PlatRepository repository) {

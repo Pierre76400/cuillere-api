@@ -17,7 +17,6 @@ class RestaurantCustomRepositoryTests {
 	@Autowired
 	private RestaurantRepository restaurantRepository;
 
-	private Long idLaPuce;
 
 	void setup(){
 		Restaurant laPuce=new Restaurant();
