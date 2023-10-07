@@ -20,6 +20,7 @@ import java.util.stream.Collectors;
 @Service
 public class RestaurantService {
 
+	private static final double REDUCTION_FETES_DES_MERES = 10.0;
 	private RestaurantCustomRepository repository;
 	private final RestaurantRepository restaurantRepository;
 
@@ -54,5 +55,14 @@ public class RestaurantService {
 	public List<RestaurantDetailDto> rechercherRestaurant(String nomRestaurant,int numPage,int taillePage) {
 		Pageable pageable= PageRequest.of(numPage,taillePage);
 		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant,pageable).stream().map(r->restaurantEntityToDetailDto(r)).collect(Collectors.toList());
+	}
+
+
+	public RestaurantDetailDto getRestaurantFeteDesMeres2019(Long idRestaurant) {
+		RestaurantDetailDto rest=restaurantEntityToDetailDto(repository.getDetailsById(idRestaurant));
+
+		rest.getPlats().stream().forEach(p->p.setPrix((p.getPrix()-(p.getPrix()/100)*REDUCTION_FETES_DES_MERES)));
+
+		return rest;
 	}
 }

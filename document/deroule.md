@@ -44,6 +44,9 @@ VACUUM (FULL, VERBOSE, ANALYZE, TRUNCATE) public.avis;
 
 On est passé de 3,5Mo à 3M
 
+#TODO Rajouter une table qui ne sert : ex : tmp_restaurant_2015
+
+
 ## Démo partie table Avis
 
 Avant modif 8.3 Mo
