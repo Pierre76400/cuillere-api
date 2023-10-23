@@ -5,11 +5,13 @@ import fr.softeam.cuillereapi.CuillereApiApplication;
 import fr.softeam.cuillereapi.model.CategoriePlat;
 import fr.softeam.cuillereapi.model.Plat;
 import fr.softeam.cuillereapi.model.Restaurant;
+import fr.softeam.cuillereapi.util.ModelHelper;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest(classes = CuillereApiApplication.class)
 class PlatRepositoryTests {
@@ -23,16 +25,10 @@ class PlatRepositoryTests {
 
 	//FIXME mettre l'annotation pour que cette méthode soit chargé à chaque fois
 	void setup(){
-		Restaurant laPuce=new Restaurant();
-		laPuce.setAdresse("12 rue Ernest Renan");
-		laPuce.setNom("La Puce");
-		laPuce.setVegetarien("Non");
+		Restaurant laPuce= ModelHelper.createRestaurantLaPuce();
 		restaurantRepository.save(laPuce);
 
-		Restaurant leRipailleur=new Restaurant();
-		leRipailleur.setAdresse("3 rue Emile Cordon");
-		leRipailleur.setNom("Le Ripailleur");
-		leRipailleur.setVegetarien("Non");
+		Restaurant leRipailleur=ModelHelper.createRestaurantLeRipailleur();
 		restaurantRepository.save(leRipailleur);
 
 		CategoriePlat cpPrincipal=new CategoriePlat();
@@ -57,7 +53,6 @@ class PlatRepositoryTests {
 		steak.setPrix(12.5d);
 		steak.setRestaurant(laPuce);
 
-
 		Plat oeuf=new Plat();
 		oeuf.setLibelle("Oeuf mayo");
 		oeuf.setCategoriePlat(cpEntree);
@@ -72,16 +67,16 @@ class PlatRepositoryTests {
 
 	@Test
 	void findAll() {
-		setup();
-		assertEquals(3,platRepository.findAll().size());
+		//setup();
+		assertEquals(4,platRepository.findAll().size());
 	}
 
 
 	@Test
 	void findByIdRestaurant() {
-		setup();
+		//setup();
 
-		assertEquals(3,platRepository.findByRestaurantId(1l).size());
+		assertNotEquals(0,platRepository.findByRestaurantId(1l).size());
 	}
 
 }

@@ -42,7 +42,7 @@ class RestaurantCustomRepositoryTests {
 
 	@Test
 	void getDetailsById() {
-		setup();
+		//setup();
 
 		assertEquals("Le coq de la maison blanche",restaurantCustomRepository.getDetailsById(1l).getNom());
 	}

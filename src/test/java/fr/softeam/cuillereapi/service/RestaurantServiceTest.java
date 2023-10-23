@@ -6,6 +6,7 @@ import fr.softeam.cuillereapi.model.Plat;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.RestaurantCustomRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
+import fr.softeam.cuillereapi.util.ModelHelper;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -36,10 +37,7 @@ class RestaurantServiceTest {
 
     @Test
     void getRestaurant(){
-        Restaurant leRipailleur=new Restaurant();
-        leRipailleur.setAdresse("3 rue Emile Cordon");
-        leRipailleur.setNom("Le Ripailleur");
-        leRipailleur.setVegetarien("Non");
+        Restaurant leRipailleur= ModelHelper.createRestaurantLeRipailleur();
 
         CategoriePlat cpPrincipal=new CategoriePlat();
         cpPrincipal.setCode("CP");
@@ -65,10 +63,7 @@ class RestaurantServiceTest {
 
     @Test
     void getRestaurantFeteDesMeres2019(){
-        Restaurant leRipailleur=new Restaurant();
-        leRipailleur.setAdresse("3 rue Emile Cordon");
-        leRipailleur.setNom("Le Ripailleur");
-        leRipailleur.setVegetarien("Non");
+        Restaurant leRipailleur= ModelHelper.createRestaurantLeRipailleur();
 
         CategoriePlat cpPrincipal=new CategoriePlat();
         cpPrincipal.setCode("CP");
