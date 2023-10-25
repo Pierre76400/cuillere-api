@@ -1,8 +1,8 @@
 -- Restaurants
-insert into restaurant (id,adresse,nom,vegetarien) values (NEXTVAL('restaurant_seq'),'1 rue du lac','Le coq de la maison blanche','NON');
-insert into restaurant (id,adresse,nom,vegetarien) values (NEXTVAL('restaurant_seq'),'3 rue du St Anne','Wakazi','NON');
-insert into restaurant (id,adresse,nom,vegetarien) values (NEXTVAL('restaurant_seq'),'32 allée de Paris','Le loucher ben','NON');
-insert into restaurant (id,adresse,nom,vegetarien) values (NEXTVAL('restaurant_seq'),'11 avenue du tertre','L''herbe folle','OUI');
+insert into restaurant (id,adresse,nom,vegetarien,la,lo) values (NEXTVAL('restaurant_seq'),'1 rue du lac','Le coq de la maison blanche','NON',48.8566,2.3422);
+insert into restaurant (id,adresse,nom,vegetarien,la,lo) values (NEXTVAL('restaurant_seq'),'3 rue du St Anne','Wakazi','NON',48.8466,2.3522);
+insert into restaurant (id,adresse,nom,vegetarien,la,lo) values (NEXTVAL('restaurant_seq'),'32 allée de Paris','Le loucher ben','NON',48.8366,2.3622);
+insert into restaurant (id,adresse,nom,vegetarien,la,lo) values (NEXTVAL('restaurant_seq'),'11 avenue du tertre','L''herbe folle','OUI',48.8666,2.3522);
 
 -- Catégorie plat
 insert into categorie_plat (code,libelle) values ('ENT','Entrée');

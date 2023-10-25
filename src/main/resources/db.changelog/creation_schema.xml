@@ -50,6 +50,8 @@
             <column name="nom" type="varchar(255)"/>
             <column name="vegetarien" type="varchar(255)"/>
             <column name="date_creation" type="datetime"/>
+            <column name="la" type="float"/>
+            <column name="lo" type="float"/>
         </createTable>
     </changeSet>
 

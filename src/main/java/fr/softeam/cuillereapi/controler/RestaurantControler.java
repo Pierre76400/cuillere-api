@@ -2,6 +2,7 @@ package fr.softeam.cuillereapi.controler;
 
 import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.PlatDto;
+import fr.softeam.cuillereapi.api.RestaurantAvecInfoComplementaireDto;
 import fr.softeam.cuillereapi.api.RestaurantDetailDto;
 import fr.softeam.cuillereapi.api.RestaurantDto;
 import fr.softeam.cuillereapi.model.Restaurant;
@@ -41,6 +42,11 @@ public class RestaurantControler {
 	RestaurantDetailDto getRestaurant(@PathVariable Long idRestaurant) {
 		//TODO mettre en place la gestion des erreurs
 		return restaurantService.getRestaurant(idRestaurant);
+	}
+
+	@GetMapping("/restaurants/{idRestaurant}/details")
+	RestaurantAvecInfoComplementaireDto getRestaurantDetail(@PathVariable Long idRestaurant,@RequestParam double lo,@RequestParam double la,@RequestParam boolean english) {
+		return restaurantService.getRestaurantDetail(idRestaurant,lo,la,english);
 	}
 
 	@GetMapping("/restaurants/{idRestaurant}/plats")

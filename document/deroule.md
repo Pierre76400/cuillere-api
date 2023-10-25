@@ -127,6 +127,14 @@ Faire un refacto sur une méthode qui retourne le détail d'un restaurant:
 - La méthode prend en paramétre un booléen "mile" pour indiquer si on doit convertir ou pas en mile
 - Retourne les avis les plus pertinents
 
+Constante : double earthRadiusKm = 6371; // Rayon de la Terre en kilomètres
+
+Déroulé refacto:
+- Regrouper le code (on distingue un peu plus ce que fait chaque partie)
+- A la place du code query + mapping on utilise la méthode X
+- Externaliser dans une méthode le code qui calcule la distiance.
+- Demander à quoi sert la méthode et la renommer.
+- Utiliser une constante pour le rayon (une en km l'autre en mile)
 
 # Partie Asynchrone
 Simuler l'heure de pointe (cad les personnes qui donne les avis et qui consulte les restaurant de 20 à 22h)

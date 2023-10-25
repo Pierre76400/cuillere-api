@@ -92,6 +92,9 @@ public class DatabaseService {
 				r.setAdresse("" + cpt);
 				r.setVegetarien(random.nextInt(2) == 1 ? "OUI" : "NON");
 				r.setDateCreation(LocalDateTime.of(2000+random.nextInt(23),1+random.nextInt(12),1+random.nextInt(23),0,0));
+				// Paris, France lat : 48.8566d, long : 2.3522d
+				r.setLa(48.8d+random.nextInt(100)*0.001);
+				r.setLo(2.3d+random.nextInt(100)*0.001);
 				cpt++;
 
 				List<Plat> plats=createPlats();

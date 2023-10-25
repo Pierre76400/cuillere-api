@@ -26,6 +26,10 @@ public class Restaurant {
 	@OneToMany(mappedBy = "restaurant")
 	private List<Plat> plats;
 
+	private double la;
+
+	private double lo;
+
 	public Long getId() {
 		return id;
 	}
@@ -80,5 +84,21 @@ public class Restaurant {
 
 	public void setDateCreation(LocalDateTime dateCreation) {
 		this.dateCreation = dateCreation;
+	}
+
+	public double getLa() {
+		return la;
+	}
+
+	public void setLa(double la) {
+		this.la = la;
+	}
+
+	public double getLo() {
+		return lo;
+	}
+
+	public void setLo(double lo) {
+		this.lo = lo;
 	}
 }
