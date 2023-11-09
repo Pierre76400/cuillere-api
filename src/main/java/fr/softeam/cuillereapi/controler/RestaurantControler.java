@@ -5,7 +5,6 @@ import fr.softeam.cuillereapi.api.PlatDto;
 import fr.softeam.cuillereapi.api.RestaurantAvecInfoComplementaireDto;
 import fr.softeam.cuillereapi.api.RestaurantDetailDto;
 import fr.softeam.cuillereapi.api.RestaurantDto;
-import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import fr.softeam.cuillereapi.service.PlatService;
 import fr.softeam.cuillereapi.service.RestaurantService;

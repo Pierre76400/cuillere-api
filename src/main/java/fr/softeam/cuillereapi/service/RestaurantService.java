@@ -4,7 +4,6 @@ import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.PlatDto;
 import fr.softeam.cuillereapi.api.RestaurantAvecInfoComplementaireDto;
 import fr.softeam.cuillereapi.api.RestaurantDetailDto;
-import fr.softeam.cuillereapi.model.Plat;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.RestaurantCustomRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
@@ -13,7 +12,6 @@ import jakarta.persistence.Query;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;

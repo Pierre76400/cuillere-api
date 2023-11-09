@@ -2,10 +2,7 @@ package fr.softeam.cuillereapi.service;
 
 import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.PlatDto;
-import fr.softeam.cuillereapi.api.RestaurantDetailDto;
-import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.PlatRepository;
-import fr.softeam.cuillereapi.repository.RestaurantCustomRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

@@ -5,7 +5,6 @@ import fr.softeam.cuillereapi.model.Avis;
 import fr.softeam.cuillereapi.repository.AvisRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import io.micrometer.observation.annotation.Observed;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;

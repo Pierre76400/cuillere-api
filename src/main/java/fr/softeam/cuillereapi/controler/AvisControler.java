@@ -3,7 +3,6 @@ package fr.softeam.cuillereapi.controler;
 import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.AvisCreationDto;
 import fr.softeam.cuillereapi.api.AvisDto;
-import fr.softeam.cuillereapi.model.Avis;
 import fr.softeam.cuillereapi.repository.AvisRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import fr.softeam.cuillereapi.service.AvisService;
