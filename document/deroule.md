@@ -1,4 +1,10 @@
-# 1ére partie
+# 0 - Intro
+Présentation de l'application Rest. Le but est de lancr et présneter briévement les différents services Rest.
+
+Lancer l'application (conteneur + SB) puis aller dans Postman , Onglet Application.
+Présenter les 4 onglets et lancer quelques exemples (Garder les "mauvais exemples, comme les services qui récupére plusieurs Mo d'un coup (cf. get PLATS), pour plus tard)" )
+
+# 1 - Base de donnée
 TODO expliquer but de cette partie
 
 Présentation de la table Restaurant sur l'analyseur de requête : présentation des données, du modéle de la place prise
