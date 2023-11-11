@@ -1,0 +1,531 @@
+{
+	"info": {
+		"_postman_id": "2f668216-d72b-4540-a1ef-baa4bd906cfb",
+		"name": "cuillere-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "21922438"
+	},
+	"item": [
+		{
+			"name": "Refactoring",
+			"item": [
+				{
+					"name": "Récupérer détail restaurant",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/restaurants/55252/details?la=48.8566&lo=2.3522&english=true",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurants",
+								"55252",
+								"details"
+							],
+							"query": [
+								{
+									"key": "la",
+									"value": "48.8566"
+								},
+								{
+									"key": "lo",
+									"value": "2.3522"
+								},
+								{
+									"key": "english",
+									"value": "true"
+								}
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "5- Opération de masse",
+			"item": [
+				{
+					"name": "Get avis",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/restaurants",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Supprime avis obsolete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/avis/_obsoletes",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avis",
+								"_obsoletes"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Supprime avis obsolete BULK",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/avis/_obsoletesBULK",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avis",
+								"_obsoletesBULK"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "7-Asynchrone",
+			"item": [
+				{
+					"name": "Get Restaurants Copy",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/restaurants",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Créer avis",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"auteur\":\"Pierre\",\r\n    \"commentaire\":\"commentaire\",\r\n    \"note\":\"3\",\r\n\"idRestaurant\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/avis",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avis"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Créer avis kafka",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"auteur\":\"Pierre\",\r\n    \"commentaire\":\"commentaire\",\r\n    \"note\":\"3\",\r\n\"idRestaurant\":1\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:8080/avis",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"avis"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Outil",
+			"item": [
+				{
+					"name": "Init database",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/restaurants",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Démo",
+			"item": []
+		},
+		{
+			"name": "A trier",
+			"item": [
+				{
+					"name": "Recherche restaurant pagination",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/restaurants/_search2?nomRestaurant=e&numPage=1&taillePage=2",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurants",
+								"_search2"
+							],
+							"query": [
+								{
+									"key": "nomRestaurant",
+									"value": "e"
+								},
+								{
+									"key": "numPage",
+									"value": "1"
+								},
+								{
+									"key": "taillePage",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupérer plats",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/plats",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"plats"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Récupérer des Restaurants",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:8080/restaurants",
+							"host": [
+								"localhost"
+							],
+							"port": "8080",
+							"path": [
+								"restaurants"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Application",
+			"item": [
+				{
+					"name": "Plats",
+					"item": [
+						{
+							"name": "Récupérer plat par id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/plats/97353",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"plats",
+										"97353"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Récupérer plats d'un restaurant",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/restaurants/55252/plats",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"restaurants",
+										"55252",
+										"plats"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Restaurant",
+					"item": [
+						{
+							"name": "Récupérer un restaurant par Id",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/restaurants/1",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"restaurants",
+										"1"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Recherche restaurant",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/restaurants/_search?nomRestaurant=assembleur",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"restaurants",
+										"_search"
+									],
+									"query": [
+										{
+											"key": "nomRestaurant",
+											"value": "assembleur"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Récupérer détail restaurant",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/restaurants/55252/details?la=48.8566&lo=2.3522&english=true",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"restaurants",
+										"55252",
+										"details"
+									],
+									"query": [
+										{
+											"key": "la",
+											"value": "48.8566"
+										},
+										{
+											"key": "lo",
+											"value": "2.3522"
+										},
+										{
+											"key": "english",
+											"value": "true"
+										}
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Avis",
+					"item": [
+						{
+							"name": "Compter le nombre avis",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/avis/_count",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"avis",
+										"_count"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Récupérer tous les avis",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/avis",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"avis"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Créer avis",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"auteur\":\"Pierre\",\r\n    \"commentaire\":\"commentaire\",\r\n    \"note\":\"3\",\r\n\"idRestaurant\":1\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "localhost:8080/avis",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"avis"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Supprimer avis obsolètes",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/avis/_obsoletes",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"avis",
+										"_obsoletes"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Catégorie Plat",
+					"item": [
+						{
+							"name": "Récupérer categories plats",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "localhost:8080/restaurants",
+									"host": [
+										"localhost"
+									],
+									"port": "8080",
+									"path": [
+										"restaurants"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				}
+			]
+		}
+	]
+}

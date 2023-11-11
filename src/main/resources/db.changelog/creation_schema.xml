@@ -13,9 +13,16 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="change_0_0_2_1" author="pleplay">
+        <createSequence  incrementBy="50"
+                         schemaName="public"
+                         sequenceName="avis_seq"
+                         startValue="5"/>
+    </changeSet>
+
     <changeSet id="change_0_0_2" author="pleplay">
         <createTable tableName="avis" remarks="Avis sur un restaurant">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" defaultValueSequenceNext="avis_seq">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="note" type="bigint"/>
@@ -28,9 +35,17 @@
         </createTable>
     </changeSet>
 
+
+    <changeSet id="change_0_0_3_1" author="pleplay">
+        <createSequence  incrementBy="50"
+                         schemaName="public"
+                         sequenceName="plat_seq"
+                         startValue="5"/>
+    </changeSet>
+
     <changeSet id="change_0_0_3" author="pleplay">
         <createTable tableName="plat" remarks="Plat d'un restaurant">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" defaultValueSequenceNext="plat_seq">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="prix" type="float"/>
@@ -41,11 +56,19 @@
         </createTable>
     </changeSet>
 
+    <changeSet id="change_0_0_4_1" author="pleplay">
+        <createSequence  incrementBy="50"
+                         schemaName="public"
+                         sequenceName="restaurant_seq"
+                         startValue="5"/>
+    </changeSet>
+
     <changeSet id="change_0_0_4" author="pleplay">
         <createTable tableName="restaurant" remarks="Restaurant">
-            <column name="id" type="bigint">
+            <column name="id" type="bigint" defaultValueSequenceNext="restaurant_seq">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
+
             <column name="adresse" type="varchar(255)"/>
             <column name="nom" type="varchar(255)"/>
             <column name="vegetarien" type="varchar(255)"/>
