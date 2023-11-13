@@ -123,7 +123,10 @@ public class DatabaseService {
 			entityManager.flush();
 			entityManager.clear();
 		}
-
+		entityManager.createNativeQuery("create table tmp_restaurant_2019 as \n" +
+				"select * \n" +
+				"from restaurant r \n" +
+				"where r.date_creation <'01/01/2020'").executeUpdate();
 	}
 
 	private List<Avis> createAvis() {

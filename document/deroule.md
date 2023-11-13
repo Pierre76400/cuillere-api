@@ -8,24 +8,20 @@ Présenter les 4 onglets et lancer quelques exemples (Garder les "mauvais exempl
 TODO expliquer but de cette partie
 
 Présentation de la table Restaurant sur l'analyseur de requête : présentation des données, du modéle de la place prise
+Environ 30 000 restaurants, 100 000 avis et plats. Taille totale base 20 Mo
+
 La table Restaurant a une taille de 3,5M
 Demander à l'auditoire ou est ce que l'on peut gagner de la place
 
-2 données peuvent être optimisé sur cette table
+2 données peuvent être optimisés sur cette table
 - La date de création qui n'a pas besoin d'heure
-- La donnée "vegetarien" peut être représenté par un un type booléen plutôt que par un varchar contenant les chaines "OUI" ou "NON"  
+- La donnée "vegetarien" peut être représenté par un type booléen plutôt que par un varchar contenant les chaines "OUI" ou "NON"  
 
 ## Démo 
 
 Migrer la donnée de date => datetime
 ```
-ALTER TABLE restaurant ADD date_creation_migration date NULL;
-update restaurant set date_creation_migration=CAST(date_creation AS DATE);
-ALTER TABLE restaurant drop column date_creation;
-ALTER TABLE restaurant RENAME COLUMN date_creation_migration TO date_creation;
-
-//TODO Vérifier que l'on ne peut pas faire les 4 opérations précdente en une seule
-// ??? ALTER TABLE restaurant ALTER COLUMN date_creation TYPE date
+ALTER TABLE restaurant ALTER COLUMN date_creation TYPE date
 ```
 
 
@@ -36,9 +32,6 @@ update restaurant set vegetarien_migration=true where vegetarien ='OUI';
 update restaurant set vegetarien_migration=false where vegetarien ='NON';
 ALTER TABLE restaurant drop column vegetarien;
 ALTER TABLE restaurant RENAME COLUMN vegetarien_migration TO vegetarien;
-
-//TODO Vérifier que l'on ne peut pas faire les 4 opérations précdente en une seule
-// ??? ALTER TABLE restaurant ALTER COLUMN date_creation TYPE date
 ```
 
 Faire un vaccum pour voir l'espace libéré
@@ -48,14 +41,13 @@ VACUUM (FULL, VERBOSE, ANALYZE, TRUNCATE) public.plat;
 VACUUM (FULL, VERBOSE, ANALYZE, TRUNCATE) public.avis;
 ```
 
-On est passé de 3,5Mo à 3M
-
-#TODO Rajouter une table qui ne sert : ex : tmp_restaurant_2015
+On est passé de 3,8Mo à 3,5M
+TODO vérifier
 
 
 ## Démo partie table Avis
 
-Avant modif 8.3 Mo
+Avant modif 8.9 Mo
 
 Passer le type de donnée de la colonne "note" de int8 à smallint
 
@@ -73,13 +65,24 @@ Faire Vaccum
 ```
 VACUUM (FULL, VERBOSE, ANALYZE, TRUNCATE) public.avis;
 ```
-On est passé à 7.8 Mo
+On est passé à 8,4 Mo
 
-TODO
+
+## Démo supprimer vieille tables inutiles
+drop table tmp_restaurant_2015
+
+
+## Ce qui n'est pas vu dans la démo
 Table avis : supprimer les commentaires obsoléte (par exemple de + de 5 ans)
 Autre idée : supprimer les doublons , par exemple les restaurants déterminer les doublons à partir adresse
             faire une table "note" à part et mettre en évidence la place que l'on peut gagner avec un "bon" design
 Ne pas utiliser des clob à la place varchar
+
+## Faire le propre avant de passer à la suite
+Exécutuer "dropDatabase.sql"
+Redémarrer application
+Lancer " commande init"
+
 
 # Hibernate
 Pagination, cache

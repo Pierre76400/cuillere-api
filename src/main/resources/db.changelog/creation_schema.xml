@@ -36,14 +36,14 @@
     </changeSet>
 
 
-    <changeSet id="change_0_0_3_1" author="pleplay">
+    <changeSet id="change_0_0_3" author="pleplay">
         <createSequence  incrementBy="50"
                          schemaName="public"
                          sequenceName="plat_seq"
                          startValue="5"/>
     </changeSet>
 
-    <changeSet id="change_0_0_3" author="pleplay">
+    <changeSet id="change_0_0_4" author="pleplay">
         <createTable tableName="plat" remarks="Plat d'un restaurant">
             <column name="id" type="bigint" defaultValueSequenceNext="plat_seq">
                 <constraints nullable="false" primaryKey="true"/>
@@ -56,14 +56,14 @@
         </createTable>
     </changeSet>
 
-    <changeSet id="change_0_0_4_1" author="pleplay">
+    <changeSet id="change_0_0_5" author="pleplay">
         <createSequence  incrementBy="50"
                          schemaName="public"
                          sequenceName="restaurant_seq"
                          startValue="5"/>
     </changeSet>
 
-    <changeSet id="change_0_0_4" author="pleplay">
+    <changeSet id="change_0_0_6" author="pleplay">
         <createTable tableName="restaurant" remarks="Restaurant">
             <column name="id" type="bigint" defaultValueSequenceNext="restaurant_seq">
                 <constraints nullable="false" primaryKey="true"/>
@@ -79,21 +79,21 @@
     </changeSet>
 
 
-    <changeSet id="change_0_0_5" author="pleplay">
+    <changeSet id="change_0_0_7" author="pleplay">
         <addForeignKeyConstraint baseTableName="avis" baseColumnNames="restaurant_id"
                                  constraintName="fk_avis_restaurant"
                                  referencedTableName="restaurant"
                                  referencedColumnNames="id"/>
     </changeSet>
 
-    <changeSet id="change_0_0_6" author="pleplay">
+    <changeSet id="change_0_0_8" author="pleplay">
         <addForeignKeyConstraint baseTableName="plat" baseColumnNames="restaurant_id"
                                  constraintName="fk_plat_restaurant"
                                  referencedTableName="restaurant"
                                  referencedColumnNames="id"/>
     </changeSet>
 
-    <changeSet id="change_0_0_7" author="pleplay">
+    <changeSet id="change_0_0_9" author="pleplay">
         <addForeignKeyConstraint baseTableName="plat" baseColumnNames="categorie_plat_code"
                                  constraintName="fk_plat_categorie"
                                  referencedTableName="categorie_plat"
