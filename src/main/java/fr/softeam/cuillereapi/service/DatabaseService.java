@@ -73,7 +73,7 @@ public class DatabaseService {
 		logger.info("Fin suppression restaurant");
 		categoriePlatRepository.deleteAll();
 		logger.info("Fin suppression catégorie");
-		//entityManager.createNativeQuery("delete from restaurant");
+		entityManager.createNativeQuery("DROP TABLE IF EXISTS tmp_restaurant_2019").executeUpdate();
 		logger.info("Fin cleardatabase");
 	}
 
@@ -123,10 +123,12 @@ public class DatabaseService {
 			entityManager.flush();
 			entityManager.clear();
 		}
+		logger.info("Tous les restaurants ont été créés. Nb {}",cpt);
 		entityManager.createNativeQuery("create table tmp_restaurant_2019 as \n" +
 				"select * \n" +
 				"from restaurant r \n" +
 				"where r.date_creation <'01/01/2020'").executeUpdate();
+		logger.info("Fin création table tmp_restaurant_2019");
 	}
 
 	private List<Avis> createAvis() {
