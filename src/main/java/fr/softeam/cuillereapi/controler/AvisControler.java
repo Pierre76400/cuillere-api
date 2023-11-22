@@ -21,6 +21,7 @@ import java.util.List;
 //FIXME il faudrait placer ce controler sous la ressource restaurant (cela n'a pas trop de sens de la mettre à la racine)
 @RestController
 @Observed(name = "avisControler")
+@Transactional
 public class AvisControler {
 
 	private AvisService avisService;

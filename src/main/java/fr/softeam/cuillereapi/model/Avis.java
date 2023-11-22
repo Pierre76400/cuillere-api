@@ -24,7 +24,7 @@ public class Avis {
 	@Deprecated
 	private String lieu;
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Restaurant restaurant;
 
 	private LocalDate dateCreation;

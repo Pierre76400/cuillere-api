@@ -14,6 +14,6 @@ public interface AvisRepository extends JpaRepository<Avis, Long> {
 	Long deleteByDateCreationLessThan(LocalDate date);
 
 	@Modifying
-	@Query("delete from Avis a where a.dateCreation=:date")
+	@Query("delete from Avis a where a.dateCreation<=:date")
 	Integer deleteBulkByDateCreationLessThan(@Param("date") LocalDate date);
 }
