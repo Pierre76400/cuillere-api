@@ -1,10 +1,7 @@
 package fr.softeam.cuillereapi.controler;
 
 import fr.softeam.cuillereapi.ConvertUtil;
-import fr.softeam.cuillereapi.api.PlatDto;
-import fr.softeam.cuillereapi.api.RestaurantAvecInfoComplementaireDto;
-import fr.softeam.cuillereapi.api.RestaurantDetailDto;
-import fr.softeam.cuillereapi.api.RestaurantDto;
+import fr.softeam.cuillereapi.api.*;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import fr.softeam.cuillereapi.service.PlatService;
 import fr.softeam.cuillereapi.service.RestaurantService;
@@ -55,16 +52,20 @@ public class RestaurantControler {
 
 	//TODO Est ce que l'url est bonne ?
 	@GetMapping("/restaurants/_search")
-	List<RestaurantDetailDto> rechercherRestaurant(@RequestParam String  nomRestaurant) {
-		//TODO mettre en place la gestion des erreurs
-		return restaurantService.rechercherRestaurant(nomRestaurant);
+	RechercheRestaurantDto rechercherRestaurant(@RequestParam String  nomRestaurant) {
+		RechercheRestaurantDto result=new RechercheRestaurantDto();
+		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant));
+		result.setNbResultat(result.getRestaurants().size());
+		return result;
 	}
 
 
 	@GetMapping("/restaurants/_search2")
-	List<RestaurantDetailDto> rechercherRestaurant(@RequestParam String  nomRestaurant,@RequestParam int numPage,@RequestParam int taillePage) {
-		//TODO mettre en place la gestion des erreurs
-		return restaurantService.rechercherRestaurant(nomRestaurant,numPage,taillePage);
+	RechercheRestaurantDto rechercherRestaurant(@RequestParam String  nomRestaurant,@RequestParam int numPage,@RequestParam int taillePage) {
+		RechercheRestaurantDto result=new RechercheRestaurantDto();
+		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant,numPage,taillePage));
+		result.setNbResultat(result.getRestaurants().size());
+		return result;
 	}
 
 

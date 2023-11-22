@@ -20,7 +20,7 @@ public class Restaurant {
 
 	private LocalDateTime dateCreation;
 
-	@OneToMany(mappedBy = "restaurant")
+	@OneToMany(mappedBy = "restaurant",fetch = FetchType.EAGER)
 	private List<Avis> avis;
 
 	@OneToMany(mappedBy = "restaurant")
