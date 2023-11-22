@@ -58,16 +58,4 @@ public class RestaurantControler {
 		result.setNbResultat(result.getRestaurants().size());
 		return result;
 	}
-
-
-	@GetMapping("/restaurants/_search2")
-	RechercheRestaurantDto rechercherRestaurant(@RequestParam String  nomRestaurant,@RequestParam int numPage,@RequestParam int taillePage) {
-		RechercheRestaurantDto result=new RechercheRestaurantDto();
-		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant,numPage,taillePage));
-		result.setNbResultat(result.getRestaurants().size());
-		return result;
-	}
-
-
-
 }

@@ -13,5 +13,7 @@ public interface RestaurantRepository extends CrudRepository<Restaurant, Long> {
 	Restaurant findById(long id);
 
 	List<Restaurant> findByNomContainingIgnoreCase(String nomRestaurant);
-	List<Restaurant> findByNomContainingIgnoreCase(String nomRestaurant, Pageable pageable);
+
+	long countByNomContainingIgnoreCase(String nomRestaurant);
+
 }

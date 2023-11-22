@@ -38,6 +38,10 @@ public class RestaurantService {
 		return restaurantEntityToDetailDto(repository.getDetailsById(idRestaurant));
 	}
 
+	public long compterRestaurant(String nomRestaurant) {
+		return restaurantRepository.countByNomContainingIgnoreCase(nomRestaurant);
+	}
+
 	private RestaurantDetailDto restaurantEntityToDetailDto(Restaurant r) {
 		RestaurantDetailDto dto=new RestaurantDetailDto();
 		dto.setId(r.getId());
@@ -54,12 +58,6 @@ public class RestaurantService {
 
 	public List<RestaurantDetailDto> rechercherRestaurant(String nomRestaurant) {
 		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant).stream().map(r->restaurantEntityToDetailDto(r)).collect(Collectors.toList());
-	}
-
-
-	public List<RestaurantDetailDto> rechercherRestaurant(String nomRestaurant,int numPage,int taillePage) {
-		Pageable pageable= PageRequest.of(numPage,taillePage);
-		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant,pageable).stream().map(r->restaurantEntityToDetailDto(r)).collect(Collectors.toList());
 	}
 
 
