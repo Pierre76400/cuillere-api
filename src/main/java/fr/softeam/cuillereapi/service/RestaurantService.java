@@ -40,6 +40,7 @@ public class RestaurantService {
 
 	private RestaurantDetailDto restaurantEntityToDetailDto(Restaurant r) {
 		RestaurantDetailDto dto=new RestaurantDetailDto();
+		dto.setId(r.getId());
 		dto.setNom(r.getNom());
 		dto.setAdresse(r.getAdresse());
 		dto.setVegetarien(r.getVegetarien().equals("OUI")?true:false);
