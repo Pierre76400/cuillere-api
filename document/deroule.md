@@ -84,12 +84,8 @@ Redémarrer application
 Lancer " commande init"
 
 
-# Orm et requête SQL
+# 2 - Orm et requête SQL
 Pagination, cache,requête
-
-## Lazy vs Eager
-Je lance RestaurantControler.getPlat => On ne s'apercoit qu'il y a des N+1 car il y a des eager
-TODO requête findPlatByIdRestaurant (on fait une jointure donc on une grosse requête au lieu de 2)
 
 ## Pagination
 Lancer la recherche restaurant "/restaurants/_search" avec la valeur "assembleur"
