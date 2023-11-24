@@ -159,8 +159,23 @@ Le code "avisRepository.deleteByDateCreationLessThan(datePurge);" fait la même 
 => Lequel est le mieux , pour le moment j'ai gardé le 2éme car il illustre mieux la bad practice (par contre le 1er illustre le fait qu'il faut toujours faie attention aux requêtes génèrées)
 
 
-# Refacto
-Une refacto
+# 3 - Clean code
+Aller sur la méthode RestaurantService.get
+=> A quoi sert cette méthode ? Montrer un peu le code . Il faut rendre ce code plus lisible. On peut faire un call hierarchy, ou regarder le code pour savoir à quoi sert le code
+
+On peut renommer le nom de la méthode et du Dto de retour
+=> Renommer la méthode en getRestaurantDetail
+=> Renommer le dto "Dto" en "RestaurantAvecInfoComplementaire"
+
+On a récupéré un appel à la méthode, on l'éxécute dans postman 
+=> On ne sait toujours pourquoi il y a autant de code pour retourner aussi peu de chose , ni à quoi correspond cette mystérieuse variable "d"
+
+On retourne sur la méthode, on distingue qu'il y a plusieurs parties :
+- Une partie requête
+- Une partie remplissage de Dto
+- Une partie calcul
+=> On doit pouvoir externaliser ces méthodes, mais avant toute chose . Il faut avoir une sécurité pour le refacto, il faut une couverture de test
+On a déja crée les test dans RestaurantServiceIT
 
 Faire un refacto sur une méthode qui retourne le détail d'un restaurant:
 - Récupére les entity via des requêtes
