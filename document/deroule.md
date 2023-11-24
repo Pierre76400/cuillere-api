@@ -188,7 +188,20 @@ Refacto:
 - On comprend que c'est une méthode de calcul de distance => On renomme la méthode
 - On revient sur la méthode initiale et on fait la conclusion
 
-# Partie Asynchrone
+# 4 - Partie Asynchrone
+Mise en situation : L'application marche de plus. Au début les performances sont trés bonnes, mais trés rapidement les performances se dégradent.
+Notamment entre 20 et 22h tous les soirs.
+
+Tous les soirs de nombreux utilisateur se connectent pour regarder dans quel restaurant ils vont aller
+=> Lancer VisualVm pour voir ce qui se passe dans la VM.Aller dans PerfTest et lancer testParrallelGetRestaurant pour simuler la consultation du site
+=> Montrer qu'il y a de l'activité sur la VM (mais sans plus) et pas d'activité au niveau de la base
+
+Mais les utilisateurs donne aussi leur avis.Lancer la création des avis
+=> !!! Gros impact au niveau VisualVm et au niveau de la base
+
+Solution l'asynchrone
+
+L'explication est simple, entre 20h et 22h il y a beaucoup de monde qui consulte l'application et qui donne leur avis en sortant du restaurant
 Simuler l'heure de pointe (cad les personnes qui donne les avis et qui consulte les restaurant de 20 à 22h)
 
 Reste à faire : rajouter conteneur kafka et consommation asynchrone.
