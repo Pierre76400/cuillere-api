@@ -16,9 +16,16 @@ class RestaurantServiceIT {
 
     @Test
     void getRestaurantDetail(){
-        //FIXME trouver une façon propre de récupérer
         Dto dto= restaurantService.get(1l, 2.3522d,48.8566d,false);
         assertEquals("Le coq de la maison blanche",dto.getNom());
         assertEquals(0.73d,dto.getD(),0.01d);
+    }
+
+
+    @Test
+    void getRestaurantDetail_English(){
+        Dto dto= restaurantService.get(1l, 2.3522d,48.8566d,true);
+        assertEquals("Le coq de la maison blanche",dto.getNom());
+        assertEquals(0.45d,dto.getD(),0.01d);
     }
 }
