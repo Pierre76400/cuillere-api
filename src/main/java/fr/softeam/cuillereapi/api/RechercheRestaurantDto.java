@@ -6,13 +6,13 @@ public class RechercheRestaurantDto {
 
     private int nbResultat;
 
-    private List<RestaurantDetailDto> restaurants;
+    private List<RestaurantDto> restaurants;
 
-    public List<RestaurantDetailDto> getRestaurants() {
+    public List<RestaurantDto> getRestaurants() {
         return restaurants;
     }
 
-    public void setRestaurants(List<RestaurantDetailDto> restaurants) {
+    public void setRestaurants(List<RestaurantDto> restaurants) {
         this.restaurants = restaurants;
     }
 

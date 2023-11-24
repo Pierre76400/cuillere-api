@@ -4,6 +4,7 @@ import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.PlatDto;
 import fr.softeam.cuillereapi.api.RestaurantAvecInfoComplementaireDto;
 import fr.softeam.cuillereapi.api.RestaurantDetailDto;
+import fr.softeam.cuillereapi.api.RestaurantDto;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.RestaurantCustomRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
@@ -16,6 +17,9 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
+
+import static fr.softeam.cuillereapi.ConvertUtil.restaurantEntityToDetailDto;
+import static fr.softeam.cuillereapi.ConvertUtil.restaurantEntityToDto;
 
 @Service
 public class RestaurantService {
@@ -42,22 +46,8 @@ public class RestaurantService {
 		return restaurantRepository.countByNomContainingIgnoreCase(nomRestaurant);
 	}
 
-	private RestaurantDetailDto restaurantEntityToDetailDto(Restaurant r) {
-		RestaurantDetailDto dto=new RestaurantDetailDto();
-		dto.setId(r.getId());
-		dto.setNom(r.getNom());
-		dto.setAdresse(r.getAdresse());
-		dto.setVegetarien(r.getVegetarien().equals("OUI")?true:false);
-
-		List<PlatDto> plats=new ArrayList<>();
-		r.getPlats().forEach(p->plats.add(ConvertUtil.platEntityToDto(p)));
-		dto.setPlats(plats);
-
-		return dto;
-	}
-
-	public List<RestaurantDetailDto> rechercherRestaurant(String nomRestaurant) {
-		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant).stream().map(r->restaurantEntityToDetailDto(r)).collect(Collectors.toList());
+	public List<RestaurantDto> rechercherRestaurant(String nomRestaurant) {
+		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant).stream().map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
 	}
 
 

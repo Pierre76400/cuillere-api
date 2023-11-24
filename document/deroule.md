@@ -95,11 +95,10 @@ Lancer la recherche restaurant "/restaurants/_search" avec la valeur "Abordable"
 => Cela retourne beaucoup des résultats, c'est lent et volumineux
 
 Généralement seul les premiers résultats sont pertinents.
-Il faut rendre paginable ("/restaurants/_search2") :
 - Il faut rajouter les parametres numPage et taillePage dans la methode recherche du controler RestaurantControler
   => ",@RequestParam int numPage,@RequestParam int taillePage"
 - Il faut passer ces paramétres au service restaurantService.rechercherRestaurant
-- Au niveau de X il faut créerun objet pageable
+- Au niveau de restaurantService.rechercherRestaurant il faut créer un objet pageable
   => "Pageable pageable= PageRequest.of(numPage,taillePage);"
 - Prendre en compte cet objet au niveau du dao
 - Trier par id (aller au niveau du dao et rajouter orderbyId
@@ -155,7 +154,9 @@ delete from avis where id=?
 Pour optimiser on peut faire une seule requête pour supprimer l'ensemble des résultats
 => On remplace le code dans la méthode supprimeAvisObsoletes par "avisRepository.deleteBulkByDateCreationLessThan(datePurge);"
 
-FIXME : supprimer les vieilles méthodes BULK (supprimeAvisObsoletesBulk2 ...)
+A CREUSER:
+Le code "avisRepository.deleteByDateCreationLessThan(datePurge);" fait la même chose que "avisRepository.findByDateCreationLessThan(datePurge).iterator().forEachRemaining(avis -> avisRepository.delete(avis))"
+=> Lequel est le mieux , pour le moment j'ai gardé le 2éme car il illustre mieux la bad practice (par contre le 1er illustre le fait qu'il faut toujours faie attention aux requêtes génèrées)
 
 
 # Refacto
