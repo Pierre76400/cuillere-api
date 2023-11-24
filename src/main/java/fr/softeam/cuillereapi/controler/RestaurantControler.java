@@ -40,9 +40,10 @@ public class RestaurantControler {
 		return restaurantService.getRestaurant(idRestaurant);
 	}
 
+	//FIXME renvoyer 404 si restaurant non trouvé
 	@GetMapping("/restaurants/{idRestaurant}/details")
-	RestaurantAvecInfoComplementaireDto getRestaurantDetail(@PathVariable Long idRestaurant,@RequestParam double lo,@RequestParam double la,@RequestParam boolean english) {
-		return restaurantService.getRestaurantDetail(idRestaurant,lo,la,english);
+    Dto getRestaurantDetail(@PathVariable Long idRestaurant, @RequestParam double lo, @RequestParam double la, @RequestParam boolean english) {
+		return restaurantService.get(idRestaurant,lo,la,english);
 	}
 
 	@GetMapping("/restaurants/{idRestaurant}/plats")

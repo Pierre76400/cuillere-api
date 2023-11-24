@@ -1,8 +1,6 @@
 package fr.softeam.cuillereapi.service;
 
-import fr.softeam.cuillereapi.ConvertUtil;
-import fr.softeam.cuillereapi.api.PlatDto;
-import fr.softeam.cuillereapi.api.RestaurantAvecInfoComplementaireDto;
+import fr.softeam.cuillereapi.api.Dto;
 import fr.softeam.cuillereapi.api.RestaurantDetailDto;
 import fr.softeam.cuillereapi.api.RestaurantDto;
 import fr.softeam.cuillereapi.model.Restaurant;
@@ -10,8 +8,6 @@ import fr.softeam.cuillereapi.repository.RestaurantCustomRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -59,8 +55,7 @@ public class RestaurantService {
 		return rest;
 	}
 
-	//TODO Rajouter parametre posX et posY, et english
-    public RestaurantAvecInfoComplementaireDto getRestaurantDetail(Long idRestaurant,double lo,double la,boolean english) {
+    public Dto get(Long id, double lo, double la, boolean english) {
 		double ray ;
 		double dLa;
 		double dLo;
@@ -74,7 +69,7 @@ public class RestaurantService {
 			ray=6371d;
 		}
 
-		Query query = entityManager.createNativeQuery("select id,nom,adresse,vegetarien,la,lo from restaurant where id=" + idRestaurant);
+		Query query = entityManager.createNativeQuery("select id,nom,adresse,vegetarien,la,lo from restaurant where id=" + id);
 		Object res = query.getSingleResult();
 		List<Restaurant> restaurants = new ArrayList<>();
 
@@ -89,7 +84,7 @@ public class RestaurantService {
 		r.setLa(((Number) objs[4]).doubleValue());
 		r.setLo(((Number) objs[5]).doubleValue());
 
-		RestaurantAvecInfoComplementaireDto dto=new RestaurantAvecInfoComplementaireDto();
+		Dto dto=new Dto();
 		dto.setId(r.getId());
 		dto.setNom(r.getNom());
 		dto.setAdresse(r.getAdresse());

@@ -1,8 +1,6 @@
 package fr.softeam.cuillereapi.api;
 
-import java.util.List;
-
-public class RestaurantAvecInfoComplementaireDto {
+public class Dto {
 	private Long id;
 	private String nom;
 	private String adresse;
