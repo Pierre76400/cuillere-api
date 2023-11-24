@@ -165,7 +165,7 @@ Aller sur la méthode RestaurantService.get
 
 On peut renommer le nom de la méthode et du Dto de retour
 => Renommer la méthode en getRestaurantDetail
-=> Renommer le dto "Dto" en "RestaurantAvecInfoComplementaire"
+=> Renommer le dto "Dto" en "RestaurantAvecInfoComplementaireDto"
 
 On a récupéré un appel à la méthode, on l'éxécute dans postman 
 => On ne sait toujours pourquoi il y a autant de code pour retourner aussi peu de chose , ni à quoi correspond cette mystérieuse variable "d"
@@ -176,21 +176,17 @@ On retourne sur la méthode, on distingue qu'il y a plusieurs parties :
 - Une partie calcul
 => On doit pouvoir externaliser ces méthodes, mais avant toute chose . Il faut avoir une sécurité pour le refacto, il faut une couverture de test
 On a déja crée les test dans RestaurantServiceIT
+FIXME retrouver le terme dans la présentation de Thomas Perrain et Y
 
-Faire un refacto sur une méthode qui retourne le détail d'un restaurant:
-- Récupére les entity via des requêtes
-- Calcule la distance
-- La méthode prend en paramétre un booléen "mile" pour indiquer si on doit convertir ou pas en mile
-- Retourne les avis les plus pertinents
-
-Constante : double earthRadiusKm = 6371; // Rayon de la Terre en kilomètres
-
-Déroulé refacto:
-- Regrouper le code (on distingue un peu plus ce que fait chaque partie)
-- A la place du code query + mapping on utilise la méthode X
-- Externaliser dans une méthode le code qui calcule la distiance.
-- Demander à quoi sert la méthode et la renommer.
-- Utiliser une constante pour le rayon (une en km l'autre en mile)
+Refacto:
+- 1ére chose à faire : rassembler les vaiables au + prés de leur utilisation
+- Remplacer le code qui permet de récupérer l'entity Restaurant par restaurantRepository.findById(id).get()
+- Externaliser le code de calcul
+- Donner un indice 6371 c'est la longueur du rayon de la terre en Km => Créer constante pour le rayon de la terre
+- Créer une constante pour le mile
+- On comprend que le booléen "english" veut en fait représenter l'unité de mesure => On renomme la variable
+- On comprend que c'est une méthode de calcul de distance => On renomme la méthode
+- On revient sur la méthode initiale et on fait la conclusion
 
 # Partie Asynchrone
 Simuler l'heure de pointe (cad les personnes qui donne les avis et qui consulte les restaurant de 20 à 22h)
