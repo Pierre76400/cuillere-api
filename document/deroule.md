@@ -202,9 +202,24 @@ Mais les utilisateurs donne aussi leur avis.Lancer la création des avis
 Solution l'asynchrone, on n'a pas forcément besoin d'écrire les avis tout de suite, on peut les écrie 5 minute voire plusieurs heure aprés.
 => Présenter le schéma
 
+Mettre en place l'asynchrone:
+- Rajouter le contener kafka (montrer le fichier docker-compose, il a déja été mise en place)
+- A place d'écrire l'avis en base on envoi un message. Dans AvisControler.ajouterAvis mettre kafkaAvisService.sendMessage(avisCreationDto);
+- Montrer le code de kafkaAvisService.sendMessage, cela publie un message sur le topic "cuillere-avis"
+- Faire une démo. Ajouter un avis et voir dans AKHQ le message (http://localhost:19000/ui/docker-kafka-server) => Il faut rajouter un consommateur
+- Rajout consommateur : 
+```
+	@KafkaListener(topics = "cuillere-avis")
+	public void listenGroupFoo(AvisCreationDto message) {
+		//FIXME supprimer system.out
+		System.out.println("Received Message in group foo: " + message.getAuteur());
+		avisService.creerAvis(message);
+	}
+```
+- Le message est consommé. Montrer l'avis
+- Relancer le test de création massif et voir le comportement
 
-
-# Obsolescence
+# 5 - Obsolescence
 Il existe des outils pour détecter le code mort
 Pour détecter le code mort dans eclipse (Ucd detector)
 Directement incorporé dans IntelliJ
