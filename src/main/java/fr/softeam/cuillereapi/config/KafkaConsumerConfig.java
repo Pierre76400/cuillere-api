@@ -32,6 +32,7 @@ public class KafkaConsumerConfig {
 		props.put(
 			ConsumerConfig.VALUE_DESERIALIZER_CLASS_CONFIG,
 			JsonDeserializer.class);
+		props.put(JsonDeserializer.TRUSTED_PACKAGES, "fr.softeam.cuillereapi.api");
 		return new DefaultKafkaConsumerFactory<>(props);
 	}
 
