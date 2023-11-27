@@ -4,6 +4,7 @@ import fr.softeam.cuillereapi.model.CategoriePlat;
 import fr.softeam.cuillereapi.model.Restaurant;
 import fr.softeam.cuillereapi.repository.CategoriePlatRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @RestController
+@CrossOrigin("*")
 public class CategoriePlatControler {
 
 	private final CategoriePlatRepository categoriePlatRepository;

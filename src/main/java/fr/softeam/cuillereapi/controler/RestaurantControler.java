@@ -5,16 +5,14 @@ import fr.softeam.cuillereapi.api.*;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import fr.softeam.cuillereapi.service.PlatService;
 import fr.softeam.cuillereapi.service.RestaurantService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
+@CrossOrigin("*")
 public class RestaurantControler {
 
 	private final RestaurantRepository restaurantRepository;

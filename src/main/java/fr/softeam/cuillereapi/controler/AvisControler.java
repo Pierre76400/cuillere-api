@@ -22,6 +22,7 @@ import java.util.List;
 @RestController
 @Observed(name = "avisControler")
 @Transactional
+@CrossOrigin("*")
 public class AvisControler {
 
 	private AvisService avisService;
@@ -84,6 +85,7 @@ public class AvisControler {
 
 	@KafkaListener(topics = "cuillere-avis")
 	public void listenGroupFoo(AvisCreationDto message) {
+		//FIXME supprimer system.out
 		System.out.println("Received Message in group foo: " + message.getAuteur());
 		avisService.creerAvis(message);
 	}
