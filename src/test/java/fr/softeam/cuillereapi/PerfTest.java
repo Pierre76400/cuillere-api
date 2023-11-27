@@ -51,7 +51,9 @@ public class PerfTest {
 		AvisCreationDto avisCreation=new AvisCreationDto();
 		avisCreation.setAuteur("Paul");
 		avisCreation.setNote(4l);
-		avisCreation.setIdRestaurant(1l);
+
+		//FIXME à la place trouver une facon de récupérer dynmiquement l'id
+		avisCreation.setIdRestaurant(160956l);
 		avisCreation.setCommentaire("Pas mal");
 
 		HttpEntity<AvisCreationDto> request = new HttpEntity<>(avisCreation);
