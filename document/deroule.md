@@ -199,12 +199,10 @@ Tous les soirs de nombreux utilisateur se connectent pour regarder dans quel res
 Mais les utilisateurs donne aussi leur avis.Lancer la création des avis
 => !!! Gros impact au niveau VisualVm et au niveau de la base
 
-Solution l'asynchrone
+Solution l'asynchrone, on n'a pas forcément besoin d'écrire les avis tout de suite, on peut les écrie 5 minute voire plusieurs heure aprés.
+=> Présenter le schéma
 
-L'explication est simple, entre 20h et 22h il y a beaucoup de monde qui consulte l'application et qui donne leur avis en sortant du restaurant
-Simuler l'heure de pointe (cad les personnes qui donne les avis et qui consulte les restaurant de 20 à 22h)
 
-Reste à faire : rajouter conteneur kafka et consommation asynchrone.
 
 # Obsolescence
 Il existe des outils pour détecter le code mort
