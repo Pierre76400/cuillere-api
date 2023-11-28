@@ -263,6 +263,21 @@ FIXME vérifier la suppression du code mort dans IntelliJ avec les méthodes app
     
 
 # 6 - Documentation
+On souhaite avoir la documentation de notre api. On peut écrire le swagger à la main mais on n'est pas sur qu'il correspond au code.
+=> Il faut générer la documentation à partir du code
+
+```
+
+   <!-- Pour activer swagger UI-->
+   <!-- Pour accéder à Swagger : http://localhost:8080/swagger-ui/index.html -->
+   <dependency>
+      <groupId>org.springdoc</groupId>
+      <artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+      <version>last-release-version</version>
+   </dependency>
+```
+
+A TERMINER Rajouter quelques exemples annotations cf. [ springdoc-openapi-starter-webmvc-ui ?](https://www.baeldung.com/spring-rest-openapi-documentation)
 
 FIXME nettoyer readme
 FIXME rajouter un schéma dans le readme
