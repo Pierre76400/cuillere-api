@@ -232,6 +232,35 @@ Préciser dans IntelliJ que l'on considére que le code appellé uniquement dans
 Aller dans RestaurantService la méthode getRestaurantFeteDesMeres2019 ne sert à rien
 Aller dans PlatService une constante ne sert à rien
 
+FIXME vérifier la suppression du code mort dans IntelliJ avec les méthodes appelés uniquement dans les TU
+
+```
+ @Test
+    void getRestaurantFeteDesMeres2019(){
+        Restaurant leRipailleur= ModelHelper.createRestaurantLeRipailleur();
+
+        CategoriePlat cpPrincipal=new CategoriePlat();
+        cpPrincipal.setCode("CP");
+        cpPrincipal.setLibelle("Plat principal");
+
+        Plat boeuf=new Plat();
+        boeuf.setLibelle("Boeuf bourguignon");
+        boeuf.setCategoriePlat(cpPrincipal);
+        boeuf.setPrix(10.5d);
+        boeuf.setRestaurant(leRipailleur);
+
+        leRipailleur.setPlats(List.of(boeuf));
+
+        when(repository.getDetailsById(3l)).thenReturn(leRipailleur);
+
+        RestaurantDetailDto res=restaurantService.getRestaurantFeteDesMeres2019(3l);
+
+        assertEquals("Le Ripailleur",res.getNom());
+        assertEquals(1,res.getPlats().size());
+        assertEquals(9.45d,res.getPlats().get(0).getPrix(),0.01d);
+    }
+```
+    
 
 # 6 - Documentation
 
