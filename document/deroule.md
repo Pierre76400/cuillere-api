@@ -232,6 +232,21 @@ Préciser dans IntelliJ que l'on considére que le code appellé uniquement dans
 Aller dans RestaurantService la méthode getRestaurantFeteDesMeres2019 ne sert à rien
 Aller dans PlatService une constante ne sert à rien
 
+
+# 6 - Documentation
+
+FIXME nettoyer readme
+FIXME rajouter un schéma dans le readme
+FIXME faut rajouter des exemples pour les commentaires dans le code ?
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!! NON GARDE !!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 # Observabilité et métriques
 https://www.baeldung.com/spring-boot-3-observability
 On peut accéder aux metric via :
