@@ -199,8 +199,11 @@ Tous les soirs de nombreux utilisateur se connectent pour regarder dans quel res
 Mais les utilisateurs donne aussi leur avis.Lancer la création des avis
 => !!! Gros impact au niveau VisualVm et au niveau de la base
 
-Solution l'asynchrone, on n'a pas forcément besoin d'écrire les avis tout de suite, on peut les écrie 5 minute voire plusieurs heure aprés.
+Solution l'asynchrone, on n'a pas forcément besoin d'écrire les avis tout de suite, on peut les écrire quelque minutes  aprés.
 => Présenter le schéma
+
+On va s'interresser en particulier à l'ajout des avis
+=> Redémarrer l'appli, lancer Visual Vm sur l'appli. Lancer le test et prendre un screenshot de la mémoire/CPU
 
 Mettre en place l'asynchrone:
 - Rajouter le contener kafka (montrer le fichier docker-compose, il a déja été mise en place)
@@ -217,7 +220,7 @@ Mettre en place l'asynchrone:
 	}
 ```
 - Le message est consommé. Montrer l'avis
-- Relancer le test de création massif et voir le comportement
+- Relancer le test de création massif , montrer le résultat dans VisualVm et comparer à la solution synchrone (cf. screenshot)
 
 # 5 - Obsolescence
 Il existe des outils pour détecter le code mort
