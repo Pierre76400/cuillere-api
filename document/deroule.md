@@ -214,8 +214,7 @@ Mettre en place l'asynchrone:
 ```
 	@KafkaListener(topics = "cuillere-avis")
 	public void listenGroupFoo(AvisCreationDto message) {
-		//FIXME supprimer system.out
-		System.out.println("Received Message in group foo: " + message.getAuteur());
+		logger.info("Création de l'avis pour restaurant {}",message.getIdRestaurant());
 		avisService.creerAvis(message);
 	}
 ```
@@ -223,12 +222,59 @@ Mettre en place l'asynchrone:
 - Relancer le test de création massif , montrer le résultat dans VisualVm et comparer à la solution synchrone (cf. screenshot)
 
 # 5 - Obsolescence
-Il existe des outils pour détecter le code mort
-Pour détecter le code mort dans eclipse (Ucd detector)
-Directement incorporé dans IntelliJ
+Il existe des outils pour détecter le code mort :
+- Dans eclipse, plugin Ucd detector
+- Directement incorporé dans IntelliJ
 
-Dans IntelliJ => Analyze | Run Inspection by Name... | Unused declaration.
+Dans IntelliJ => Code | Analyze | Run Inspection by Name... | Unused declaration.
 Préciser dans IntelliJ que l'on considére que le code appellé uniquement dans les TU est inutile ( Inspection option -> Entry Point -> When entry point are in test sources mark callees as (used/unused))
+
+Aller dans RestaurantService la méthode getRestaurantFeteDesMeres2019 ne sert à rien
+Aller dans PlatService une constante ne sert à rien
+
+FIXME vérifier la suppression du code mort dans IntelliJ avec les méthodes appelés uniquement dans les TU
+
+```
+ @Test
+    void getRestaurantFeteDesMeres2019(){
+        Restaurant leRipailleur= ModelHelper.createRestaurantLeRipailleur();
+
+        CategoriePlat cpPrincipal=new CategoriePlat();
+        cpPrincipal.setCode("CP");
+        cpPrincipal.setLibelle("Plat principal");
+
+        Plat boeuf=new Plat();
+        boeuf.setLibelle("Boeuf bourguignon");
+        boeuf.setCategoriePlat(cpPrincipal);
+        boeuf.setPrix(10.5d);
+        boeuf.setRestaurant(leRipailleur);
+
+        leRipailleur.setPlats(List.of(boeuf));
+
+        when(repository.getDetailsById(3l)).thenReturn(leRipailleur);
+
+        RestaurantDetailDto res=restaurantService.getRestaurantFeteDesMeres2019(3l);
+
+        assertEquals("Le Ripailleur",res.getNom());
+        assertEquals(1,res.getPlats().size());
+        assertEquals(9.45d,res.getPlats().get(0).getPrix(),0.01d);
+    }
+```
+    
+
+# 6 - Documentation
+
+FIXME nettoyer readme
+FIXME rajouter un schéma dans le readme
+FIXME faut rajouter des exemples pour les commentaires dans le code ?
+
+
+
+
+
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+!!!! NON GARDE !!!!!!!!!!!!!!!!!!!
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 # Observabilité et métriques
 https://www.baeldung.com/spring-boot-3-observability
