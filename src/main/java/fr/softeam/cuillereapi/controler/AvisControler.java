@@ -86,12 +86,4 @@ public class AvisControler {
 	public void sendKafkaMessage(@RequestBody AvisCreationDto avisCreationDto) {
 		kafkaAvisService.sendMessage(avisCreationDto);
 	}
-
-	@KafkaListener(topics = "cuillere-avis")
-	public void listenGroupFoo(AvisCreationDto message) {
-		logger.info("Création de l'avis pour restaurant {}",message.getIdRestaurant());
-		avisService.creerAvis(message);
-	}
-	//FIXME test consumer
-	//FIXME menage kafka
 }
