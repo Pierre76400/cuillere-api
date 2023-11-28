@@ -214,8 +214,7 @@ Mettre en place l'asynchrone:
 ```
 	@KafkaListener(topics = "cuillere-avis")
 	public void listenGroupFoo(AvisCreationDto message) {
-		//FIXME supprimer system.out
-		System.out.println("Received Message in group foo: " + message.getAuteur());
+		logger.info("Création de l'avis pour restaurant {}",message.getIdRestaurant());
 		avisService.creerAvis(message);
 	}
 ```
@@ -223,12 +222,15 @@ Mettre en place l'asynchrone:
 - Relancer le test de création massif , montrer le résultat dans VisualVm et comparer à la solution synchrone (cf. screenshot)
 
 # 5 - Obsolescence
-Il existe des outils pour détecter le code mort
-Pour détecter le code mort dans eclipse (Ucd detector)
-Directement incorporé dans IntelliJ
+Il existe des outils pour détecter le code mort :
+- Dans eclipse, plugin Ucd detector
+- Directement incorporé dans IntelliJ
 
-Dans IntelliJ => Analyze | Run Inspection by Name... | Unused declaration.
+Dans IntelliJ => Code | Analyze | Run Inspection by Name... | Unused declaration.
 Préciser dans IntelliJ que l'on considére que le code appellé uniquement dans les TU est inutile ( Inspection option -> Entry Point -> When entry point are in test sources mark callees as (used/unused))
+
+Aller dans RestaurantService la méthode getRestaurantFeteDesMeres2019 ne sert à rien
+Aller dans PlatService une constante ne sert à rien
 
 # Observabilité et métriques
 https://www.baeldung.com/spring-boot-3-observability
