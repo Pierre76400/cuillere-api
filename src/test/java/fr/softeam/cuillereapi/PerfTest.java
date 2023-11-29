@@ -3,6 +3,7 @@ package fr.softeam.cuillereapi;
 import fr.softeam.cuillereapi.api.AvisCreationDto;
 import fr.softeam.cuillereapi.controler.AvisControler;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,6 +15,7 @@ import org.springframework.web.client.RestTemplate;
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
+@Disabled("Faux tests unitaire pour les besoins de la démo")
 public class PerfTest {
 	static Logger logger = LoggerFactory.getLogger(PerfTest.class);
 
