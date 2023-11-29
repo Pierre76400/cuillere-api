@@ -277,7 +277,17 @@ On souhaite avoir la documentation de notre api. On peut écrire le swagger à l
    </dependency>
 ```
 
-A TERMINER Rajouter quelques exemples annotations cf. [ springdoc-openapi-starter-webmvc-ui ?](https://www.baeldung.com/spring-rest-openapi-documentation)
+Aller sur swagger UI, Swagger UI expose la documentation et permet d'éxécuter des appels Rest
+
+On peut rajouter de la documentation sur les méthodes , aller dans RestaurantControler.getRestaurant :
+```
+@Operation(summary = "Récupére un restaurant")
+```
+et sur les paramétres :
+```
+@Parameter(name = "idRestaurant", description = "Identifiant du restaurant", example = "45621") 
+```
+=> Redémarrer l'appli et remontrer le résultat
 
 FIXME nettoyer readme
 FIXME rajouter un schéma dans le readme
