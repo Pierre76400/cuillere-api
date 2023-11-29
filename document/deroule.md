@@ -159,6 +159,37 @@ Le code "avisRepository.deleteByDateCreationLessThan(datePurge);" fait la même 
 => Lequel est le mieux , pour le moment j'ai gardé le 2éme car il illustre mieux la bad practice (par contre le 1er illustre le fait qu'il faut toujours faie attention aux requêtes génèrées)
 
 
+# 3 - Outil qualité de code et usine logicielle
+On a déja installé au préalable "sonar"
+=> Montrer le docker-compose
+Etapes:
+- La premiére fois on doit changer le mot (login/mdp par défaut : admin/admin)
+- Créer un projet en local
+- Saisir "cuillere-api" dans le nom du projet
+- Use "global setting" puis next
+-  How do you want to analyze your repository? => "Locally"
+-  Générer le token=> Continue => Maven => Copier la ligne maven et la lancer
+- Au bout de quelque minute(environ 2) le projet apparait
+
+Aller dans le projet expliquer les différentes sections, bug, duplication couverture , ...
+Aller dans quality profile et qu'on peut les personnaliser.Faire une démo :
+- Appuyer sur create
+- Extend an existing quality profile -> Java -> Sonar way -> Nommer la régle "eco"
+- Aller dans activate more
+- Rechercher dans le tag "eco-design"
+- Appuyer sur "bulk change"
+- Puis mettre le profil comme defaut
+!!!! Ne pas lancer une nouvelle analyse car il y a une régle sonar du projet "eco-design" qui plante sur le projet
+
+Expliquer la notion de quality gate
+
+Aller sur le profil et expliquer la notion de "notification"
+
+
+TODO Slide et décaler les N° de chapitre
+TODO fixer l'erreur généré quand on lance la commande maven
+TODO regarder pourquoi on n'a pas la couverture (probablement lié erreur précédente)
+
 # 3 - Clean code
 Aller sur la méthode RestaurantService.get
 => A quoi sert cette méthode ? Montrer un peu le code . Il faut rendre ce code plus lisible. On peut faire un call hierarchy, ou regarder le code pour savoir à quoi sert le code
