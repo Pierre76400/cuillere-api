@@ -291,7 +291,7 @@ et sur les paramétres :
 
 FIXME nettoyer readme
 FIXME rajouter un schéma dans le readme
-FIXME faut rajouter des exemples pour les commentaires dans le code ?
+FIXME faut rajouter dans la présentation des exemples pour les commentaires dans le code ?
 
 
 
@@ -314,3 +314,5 @@ PAsser ces metrics à prometheus
 Brancher Grafana ?????
 
 FIXME miniser les logs de l'appli(supprimer par exemple les niveau "info" pour le kafka)
+FIXME mettre en place la fonctionnalité qui permet de prendre en compte en live les changement dans le code en redémarrant l'appli
+FIME préparer contener avec l'appli
