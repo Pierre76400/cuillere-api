@@ -159,7 +159,7 @@ Le code "avisRepository.deleteByDateCreationLessThan(datePurge);" fait la même 
 => Lequel est le mieux , pour le moment j'ai gardé le 2éme car il illustre mieux la bad practice (par contre le 1er illustre le fait qu'il faut toujours faie attention aux requêtes génèrées)
 
 
-# 3 - Outil qualité de code et usine logicielle
+# 3 - Outils qualité de code et usine logicielle
 On a déja installé au préalable "sonar"
 => Montrer le docker-compose
 Etapes:
