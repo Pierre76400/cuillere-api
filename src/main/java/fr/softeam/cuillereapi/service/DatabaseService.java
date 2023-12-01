@@ -82,10 +82,7 @@ public class DatabaseService {
 		initCategoriePlat();
 
 		for(String adj:adjectifs_smart){
-			//FIXME pro for(String nom:noms){
-			//Arrays.asList("abatteur")
 			for(String nom:noms){
-				//FIXME retirer trace sql profil docker, pb vegetratien aleatoire,
 				Restaurant r = new Restaurant();
 				r.setNom(adj + " " + nom);
 				r.setAdresse("" + cpt);
@@ -96,11 +93,10 @@ public class DatabaseService {
 				r.setLo(2.3d+random.nextInt(100)*0.001);
 				cpt++;
 
-				List<Plat> plats=createPlats();
-				r.setPlats(plats);
+				r.setPlats(createPlats());
 				restaurantRepository.save(r);
 
-				for(Plat plat:plats){
+				for(Plat plat:r.getPlats()){
 					plat.setRestaurant(r);
 					platRepository.save(plat);
 				}
