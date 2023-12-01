@@ -186,11 +186,10 @@ Expliquer la notion de quality gate
 Aller sur le profil et expliquer la notion de "notification"
 
 
-TODO Slide et décaler les N° de chapitre
 TODO fixer l'erreur généré quand on lance la commande maven
 TODO regarder pourquoi on n'a pas la couverture (probablement lié erreur précédente)
 
-# 3 - Clean code
+# 4 - Clean code
 Aller sur la méthode RestaurantService.get
 => A quoi sert cette méthode ? Montrer un peu le code . Il faut rendre ce code plus lisible. On peut faire un call hierarchy, ou regarder le code pour savoir à quoi sert le code
 
@@ -219,7 +218,7 @@ Refacto:
 - On comprend que c'est une méthode de calcul de distance => On renomme la méthode
 - On revient sur la méthode initiale et on fait la conclusion
 
-# 4 - Partie Asynchrone
+# 5 - Partie Asynchrone
 Mise en situation : L'application marche de plus. Au début les performances sont trés bonnes, mais trés rapidement les performances se dégradent.
 Notamment entre 20 et 22h tous les soirs.
 
@@ -252,7 +251,7 @@ Mettre en place l'asynchrone:
 - Le message est consommé. Montrer l'avis
 - Relancer le test de création massif , montrer le résultat dans VisualVm et comparer à la solution synchrone (cf. screenshot)
 
-# 5 - Obsolescence
+# 6 - Obsolescence
 Il existe des outils pour détecter le code mort :
 - Dans eclipse, plugin Ucd detector
 - Directement incorporé dans IntelliJ
@@ -293,7 +292,7 @@ FIXME vérifier la suppression du code mort dans IntelliJ avec les méthodes app
 ```
     
 
-# 6 - Documentation
+# 7 - Documentation
 On souhaite avoir la documentation de notre api. On peut écrire le swagger à la main mais on n'est pas sur qu'il correspond au code.
 => Il faut générer la documentation à partir du code
 
