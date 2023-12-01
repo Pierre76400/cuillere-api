@@ -1,5 +1,5 @@
 # 0 - Intro
-Présentation de l'application Rest. Le but est de lancr et présneter briévement les différents services Rest.
+Présentation de l'application Rest. Le but est de lancer et présenter briévement les différents services Rest.
 
 Lancer l'application (conteneur + SB) puis aller dans Postman , Onglet Application.
 Présenter les 4 onglets et lancer quelques exemples (Garder les "mauvais exemples, comme les services qui récupére plusieurs Mo d'un coup (cf. get PLATS), pour plus tard)" )
