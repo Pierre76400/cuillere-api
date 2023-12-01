@@ -122,9 +122,7 @@ Pour afficher les requêtes : logging.level.org.hibernate.SQL=DEBUG dans applica
 On voit plein de requêtes, les premiéres sont plein de requêtes pour récupére les avis. Hors on ne récupére pas les avis dans notre résultat !
 Pourquoi ? Il faut aller dans l'entity Restaurant et regarder le mapping avec avis. La relation restaurant/entity est en eager !
 => PAsser la relation restaurant/entity en Lazy
-=> relancer le test, c'estm ieux
-
-FIXME au niveau de la recherche , transformer le service pour qu'il n'affiche que les restuarant(pas de jointure avec les plats)
+=> relancer le test, c'est mieux
 
 ## Eviter les N+1
 Suite à l'appel au service qui récupére les restaurants(GET localhost:8080/restaurants) on voit une requête N+1
