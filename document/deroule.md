@@ -341,6 +341,4 @@ Exposer service restaurant dans metrics
 PAsser ces metrics à prometheus
 Brancher Grafana ?????
 
-FIXME miniser les logs de l'appli(supprimer par exemple les niveau "info" pour le kafka)
-FIXME mettre en place la fonctionnalité qui permet de prendre en compte en live les changement dans le code en redémarrant l'appli
-FIME préparer contener avec l'appli
+FIXME préparer contener avec l'appli

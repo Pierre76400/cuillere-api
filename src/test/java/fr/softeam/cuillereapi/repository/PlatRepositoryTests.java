@@ -24,44 +24,14 @@ class PlatRepositoryTests {
 	@Autowired
 	private RestaurantRepository restaurantRepository;
 
-	//FIXME mettre l'annotation pour que cette méthode soit chargé à chaque fois
-	void setup(){
-		Restaurant laPuce= ModelHelper.createRestaurantLaPuce();
-		restaurantRepository.save(laPuce);
-
-		Restaurant leRipailleur=ModelHelper.createRestaurantLeRipailleur();
-		restaurantRepository.save(leRipailleur);
-
-		CategoriePlat cpPrincipal = getCategoriePlatPlatPrincipal("CP", "Plat principal");
-		categoriePlatRepository.save(cpPrincipal);
-
-		CategoriePlat cpEntree = getCategoriePlatPlatPrincipal("EN", "Entrée");
-		categoriePlatRepository.save(cpEntree);
-
-		Plat boeuf=createPlatBoeufBourguignon(leRipailleur, cpPrincipal);
-
-		Plat steak = createPlatSteakFrite(laPuce, cpPrincipal);
-
-		Plat oeuf = createPlatOeufMayo(leRipailleur, cpEntree);
-
-		platRepository.save(boeuf);
-		platRepository.save(steak);
-		platRepository.save(oeuf);
-
-	}
-
-
 	@Test
 	void findAll() {
-		//setup();
 		assertEquals(4,platRepository.findAll().size());
 	}
 
 
 	@Test
 	void findByIdRestaurant() {
-		//setup();
-
 		assertNotEquals(0,platRepository.findByRestaurantId(1l).size());
 	}
 

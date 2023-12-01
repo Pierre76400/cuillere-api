@@ -17,33 +17,8 @@ class RestaurantCustomRepositoryTests {
 	@Autowired
 	private RestaurantRepository restaurantRepository;
 
-
-	void setup(){
-		Restaurant laPuce=new Restaurant();
-		laPuce.setAdresse("12 rue Ernest Renan");
-		laPuce.setNom("La Puce");
-		laPuce.setVegetarien("Non");
-
-		Restaurant leRipailleur=new Restaurant();
-		leRipailleur.setAdresse("3 rue Emile Cordon");
-		leRipailleur.setNom("Le Ripailleur");
-		leRipailleur.setVegetarien("Non");
-
-		Restaurant laCarotte=new Restaurant();
-		laCarotte.setAdresse("3 rue des prés");
-		laCarotte.setNom("La carotte");
-		laCarotte.setVegetarien("Oui");
-
-		restaurantRepository.save(laPuce);
-		restaurantRepository.save(leRipailleur);
-		restaurantRepository.save(laCarotte);
-
-	}
-
 	@Test
 	void getDetailsById() {
-		//setup();
-
 		assertEquals("Le coq de la maison blanche",restaurantCustomRepository.getDetailsById(1l).getNom());
 	}
 
