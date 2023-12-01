@@ -30,16 +30,12 @@ public class AvisControler {
 	Logger logger = LoggerFactory.getLogger(AvisControler.class);
 	private AvisService avisService;
 	private final AvisRepository avisRepository;
-	private final RestaurantRepository restaurantRepository;
 
 	private final KafkaAvisService kafkaAvisService;
 
-
-	AvisControler(AvisService avisService,AvisRepository avisRepository,
-				  RestaurantRepository restaurantRepository,KafkaAvisService kafkaAvisService) {
+	AvisControler(AvisService avisService,AvisRepository avisRepository,KafkaAvisService kafkaAvisService) {
 		this.avisService=avisService;
 		this.avisRepository = avisRepository;
-		this.restaurantRepository = restaurantRepository;
 		this.kafkaAvisService=kafkaAvisService;
 	}
 
@@ -63,26 +59,5 @@ public class AvisControler {
 	public void supprimeAvisObsoletes() {
 		LocalDate datePurge=LocalDate.now().minusYears(5);
 		avisRepository.findByDateCreationLessThan(datePurge).iterator().forEachRemaining(avis -> avisRepository.delete(avis));
-	}
-
-	//FIXME le bulk ci dessous ne marche pas , faut il garder cette implémentation ou celle ci dessus ?
-	@DeleteMapping("/avis/_obsoletesBULKQuiNeMarchePAs")
-	@Transactional
-	public void supprimeAvisObsoletesBulk() {
-		LocalDate datePurge=LocalDate.now().minusYears(5);
-		avisRepository.deleteByDateCreationLessThan(datePurge);
-	}
-
-	@DeleteMapping("/avis/_obsoletesBULK")
-	@Transactional
-	public void supprimeAvisObsoletesBulk2() {
-		LocalDate datePurge=LocalDate.now().minusYears(5);
-		avisRepository.deleteBulkByDateCreationLessThan(datePurge);
-	}
-
-	@PostMapping("/avis/kafka")
-	//Rajouter un message spécificique (avec tt les infos sur l'avis) sur un topic dédié
-	public void sendKafkaMessage(@RequestBody AvisCreationDto avisCreationDto) {
-		kafkaAvisService.sendMessage(avisCreationDto);
 	}
 }
