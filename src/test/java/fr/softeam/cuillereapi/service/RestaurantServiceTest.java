@@ -15,6 +15,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.List;
 
+import static fr.softeam.cuillereapi.util.ModelHelper.createPlatBoeufBourguignon;
+import static fr.softeam.cuillereapi.util.ModelHelper.getCategoriePlatPlatPrincipal;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.when;
 
@@ -26,29 +28,14 @@ class RestaurantServiceTest {
     @Mock
     RestaurantRepository restaurantRepository;
 
-
     @Mock
     RestaurantCustomRepository repository;
-
-
-    //FIXME créer un modelhelper
-    //FIXME Compléter le () -> déroulé
 
     @Test
     void getRestaurant(){
         Restaurant leRipailleur= ModelHelper.createRestaurantLeRipailleur();
-
-        CategoriePlat cpPrincipal=new CategoriePlat();
-        cpPrincipal.setCode("CP");
-        cpPrincipal.setLibelle("Plat principal");
-
-        Plat boeuf=new Plat();
-        boeuf.setLibelle("Boeuf bourguignon");
-        boeuf.setCategoriePlat(cpPrincipal);
-        boeuf.setPrix(10.5d);
-        boeuf.setRestaurant(leRipailleur);
-
-        leRipailleur.setPlats(List.of(boeuf));
+        CategoriePlat cpPrincipal=getCategoriePlatPlatPrincipal("CP", "Plat principal");
+        leRipailleur.setPlats(List.of(createPlatBoeufBourguignon(leRipailleur, cpPrincipal)));
 
         when(repository.getDetailsById(3l)).thenReturn(leRipailleur);
 
@@ -58,5 +45,4 @@ class RestaurantServiceTest {
         assertEquals(1,res.getPlats().size());
         assertEquals(10.5d,res.getPlats().get(0).getPrix());
     }
-
 }

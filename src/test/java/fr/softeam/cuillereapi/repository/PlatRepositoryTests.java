@@ -10,6 +10,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import static fr.softeam.cuillereapi.util.ModelHelper.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
@@ -31,39 +32,24 @@ class PlatRepositoryTests {
 		Restaurant leRipailleur=ModelHelper.createRestaurantLeRipailleur();
 		restaurantRepository.save(leRipailleur);
 
-		CategoriePlat cpPrincipal=new CategoriePlat();
-		cpPrincipal.setCode("CP");
-		cpPrincipal.setLibelle("Plat principal");
+		CategoriePlat cpPrincipal = getCategoriePlatPlatPrincipal("CP", "Plat principal");
 		categoriePlatRepository.save(cpPrincipal);
 
-		CategoriePlat cpEntree=new CategoriePlat();
-		cpEntree.setCode("EN");
-		cpEntree.setLibelle("Entrée");
+		CategoriePlat cpEntree = getCategoriePlatPlatPrincipal("EN", "Entrée");
 		categoriePlatRepository.save(cpEntree);
 
-		Plat boeuf=new Plat();
-		boeuf.setLibelle("Boeuf bourguignon");
-		boeuf.setCategoriePlat(cpPrincipal);
-		boeuf.setPrix(10.5d);
-		boeuf.setRestaurant(laPuce);
+		Plat boeuf=createPlatBoeufBourguignon(leRipailleur, cpPrincipal);
 
-		Plat steak=new Plat();
-		steak.setLibelle("Steak frite");
-		steak.setCategoriePlat(cpPrincipal);
-		steak.setPrix(12.5d);
-		steak.setRestaurant(laPuce);
+		Plat steak = createPlatSteakFrite(laPuce, cpPrincipal);
 
-		Plat oeuf=new Plat();
-		oeuf.setLibelle("Oeuf mayo");
-		oeuf.setCategoriePlat(cpEntree);
-		oeuf.setPrix(2.5d);
-		oeuf.setRestaurant(leRipailleur);
+		Plat oeuf = createPlatOeufMayo(leRipailleur, cpEntree);
 
 		platRepository.save(boeuf);
 		platRepository.save(steak);
 		platRepository.save(oeuf);
 
 	}
+
 
 	@Test
 	void findAll() {
