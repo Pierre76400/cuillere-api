@@ -76,6 +76,22 @@ services:
     environment:
       TZ: "Europe/Paris"
 
+  #Sonar url : http://localhost:9400/
+  sonarqube:
+    image: ghcr.io/green-code-initiative/sonarqube-ecocode:latest
+    # A priori pour que ES puisse accéder à des répertoires
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
+    volumes:
+      - /tmp/opt/sonarqube/conf:/opt/sonarqube/conf \
+      - /tmp/opt/sonarqube/logs:/opt/sonarqube/data \
+      - /tmp/opt/sonarqube/data:/opt/sonarqube/logs \
+      - /tmp/opt/sonarqube/extensions:/opt/sonarqube/extensions \
+    ports:
+      - "9400:9000"
+
 networks:
   broker-kafka:
     driver: bridge
