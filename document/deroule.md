@@ -168,7 +168,7 @@ Etapes:
 - Saisir "cuillere-api" dans le nom du projet
 - Use "global setting" puis next
 -  How do you want to analyze your repository? => "Locally"
--  Générer le token=> Continue => Maven => Copier la ligne maven et la lancer
+-  Générer le token=> Continue => Maven => Copier la ligne maven et la lancer (!!! Supprimer les "\" dans la cmd maven)
 - Au bout de quelque minute(environ 2) le projet apparait
 
 Aller dans le projet expliquer les différentes sections, bug, duplication couverture , ...
