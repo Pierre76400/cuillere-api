@@ -29,9 +29,8 @@ public class RestaurantControler {
 
 	@GetMapping("/restaurants")
 	List<RestaurantDto> all() {
-		List<RestaurantDto> list = StreamSupport.stream(restaurantRepository.findAll().spliterator(), false)
-												.map(r-> ConvertUtil.restaurantEntityToDto(r)).collect(Collectors.toList());
-		return list;
+		return StreamSupport.stream(restaurantRepository.findAll().spliterator(), false)
+				.map(r-> ConvertUtil.restaurantEntityToDto(r)).collect(Collectors.toList());
 	}
 
 	@GetMapping("/restaurants/{idRestaurant}")
@@ -44,7 +43,6 @@ public class RestaurantControler {
 		return new ResponseEntity<>(rest, HttpStatus.CREATED);
 	}
 
-	//FIXME renvoyer 404 si restaurant non trouvé
 	@GetMapping("/restaurants/{idRestaurant}/details")
 	public ResponseEntity<Dto> getRestaurantDetail(@PathVariable Long idRestaurant, @RequestParam double lo, @RequestParam double la, @RequestParam boolean english) {
 		Dto rest= restaurantService.get(idRestaurant,lo,la,english);
