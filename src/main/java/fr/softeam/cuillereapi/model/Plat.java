@@ -4,8 +4,6 @@ package fr.softeam.cuillereapi.model;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-//FIXME regarder le pb de mapping
-//Faut il du monodirectionnel ou du bidirectionnel ?
 @Entity
 public class Plat {
 	@Id

@@ -5,6 +5,8 @@ import fr.softeam.cuillereapi.api.*;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import fr.softeam.cuillereapi.service.PlatService;
 import fr.softeam.cuillereapi.service.RestaurantService;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -33,15 +35,24 @@ public class RestaurantControler {
 	}
 
 	@GetMapping("/restaurants/{idRestaurant}")
-	RestaurantDetailDto getRestaurant(@PathVariable Long idRestaurant) {
-		//TODO mettre en place la gestion des erreurs
-		return restaurantService.getRestaurant(idRestaurant);
+	ResponseEntity<RestaurantDetailDto> getRestaurant(@PathVariable Long idRestaurant) {
+		RestaurantDetailDto rest=restaurantService.getRestaurant(idRestaurant);
+
+		if(rest==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(rest, HttpStatus.CREATED);
 	}
 
 	//FIXME renvoyer 404 si restaurant non trouvé
 	@GetMapping("/restaurants/{idRestaurant}/details")
-    Dto getRestaurantDetail(@PathVariable Long idRestaurant, @RequestParam double lo, @RequestParam double la, @RequestParam boolean english) {
-		return restaurantService.get(idRestaurant,lo,la,english);
+	public ResponseEntity<Dto> getRestaurantDetail(@PathVariable Long idRestaurant, @RequestParam double lo, @RequestParam double la, @RequestParam boolean english) {
+		Dto rest= restaurantService.get(idRestaurant,lo,la,english);
+
+		if(rest==null){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}
+		return new ResponseEntity<>(rest, HttpStatus.CREATED);
 	}
 
 	@GetMapping("/restaurants/{idRestaurant}/plats")
