@@ -49,6 +49,9 @@ public class DatabaseService {
 	private List<String> adjectifsNegatifs=Arrays.asList("Amorphe","Blasé","Crasseux","Choqué","Coupable","Dégoûté","Déprimé","Dérangé","Dégueulasse","Désinvolte","Fade","Hideux","Horrible","Maigre","Mou","Nonchalant","Sale","Sauvage","Superficiel","Terne","Vilain","Vulgaire","Aigri","Arriviste","Asocial","Associable","Avide","Baratineur","Bavard","Bourru","Capricieux","Caustique","Coléreux","Colérique","Condescendant","Conformiste","Débile","Désagréable","Désobéissant","Désordonné","Désorganisé","Énigmatique","Ennuyant","Entêté","Étourdi","Excentrique","Fainéant","Fantasque","Farfelu","Fataliste","Fatigant","Fourbe","Grossier","Hypocrite","Hystérique","Imprudent","Impulsif","Incompétent","Indiscret","Intolérant","Irrespectueux","Irresponsable","Laxiste","Lent","Lunatique","Macho","Maladroit","Malhonnête","Malicieux","Maniaque","Maniéré","Manipulateur","Méchant","Médisant","Méfiant","Mégalomane","Menteur","Méprisant","Moqueur","Mystérieux","Mythomane","Naïf","Obstiné","Pédant","Possessif","Prétentieux","Provocateur","Prudent","Puéril","Radin","Râleur","Rancunier","Rebelle","Renfermé","Réservé","Rêveur","Rieur","Ringard","Sincère","Snob","Vaniteux");
 
 
+	private List<String> villes=Arrays.asList("Paris","Saint-Ouen sur Seine","Neuilly-sur-Seine","Boulogne-Billancourt","Levallois-Perret","Clichy","Vincennes","Versailles","Enghien-les-Bains","Saint-Germain-en-Laye");
+
+
 	private EntityManager entityManager;
 
 	private Random random = new Random();
@@ -140,7 +143,7 @@ public class DatabaseService {
 			else{
 				avis.setCommentaire(adjectifsNegatifs.get(random.nextInt(adjectifsNegatifs.size())));
 			}
-			avis.setLieu("Paris");
+			avis.setLieu(villes.get(random.nextInt(villes.size())));
 			avis.setDateCreation(LocalDate.of(2016+random.nextInt(7), 1+random.nextInt(12), 1+random.nextInt(23)));
 
 			aviss.add(avis);

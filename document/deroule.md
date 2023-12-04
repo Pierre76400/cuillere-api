@@ -93,7 +93,7 @@ faire une table "note" à part et mettre en évidence la place que l'on peut gag
 Ne pas utiliser des clob à la place varchar
 
 ## Faire le propre avant de passer à la suite
-Exécutuer "dropDatabase.sql"
+Exécuter "dropDatabase.sql"
 Redémarrer application
 Lancer " commande init"
 
@@ -349,3 +349,4 @@ PAsser ces metrics à prometheus
 Brancher Grafana ?????
 
 FIXME préparer contener avec l'appli
+TODO lien avec le GR491

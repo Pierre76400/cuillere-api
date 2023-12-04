@@ -70,7 +70,7 @@
             </column>
 
             <column name="adresse" type="varchar(255)"/>
-            <column name="nom" type="varchar(255)"/>
+            <column name="nom" type="char(255)"/>
             <column name="vegetarien" type="varchar(255)"/>
             <column name="date_creation" type="datetime"/>
             <column name="la" type="float"/>
