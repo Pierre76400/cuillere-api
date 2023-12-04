@@ -1,3 +1,17 @@
+# Avant la démo
+
+## Pré requis
+Pré requis:
+- Installer docker-desktop
+- Installer postman puis importer la collection qui se trouve dans le projet /document/cuillere-api.postman_collection.json
+- Un client Sql avec Ihm (J'utilise personnellement DBeaver)
+
+## Init
+Il faut avant la démo initialiser le projet:
+- Lancer le docker-compose du projet (Ouvrir une ligne de commande dans le répertoire "/docker" et lancer la commande "docker-compose up")
+- Exécuter la classe "CuillereApiApplication" avec le projet "docker"
+- Lancer l'appel rest pour initialiser la base (GET sur "localhost:8080/init" ou appel dans POSTMAN)
+
 # 0 - Intro
 Présentation de l'application Rest. Le but est de lancer et présenter briévement les différents services Rest.
 
@@ -183,10 +197,6 @@ Expliquer la notion de quality gate
 
 Aller sur le profil et expliquer la notion de "notification"
 
-
-TODO fixer l'erreur généré quand on lance la commande maven
-TODO regarder pourquoi on n'a pas la couverture (probablement lié erreur précédente)
-
 # 4 - Clean code
 Aller sur la méthode RestaurantService.get
 => A quoi sert cette méthode ? Montrer un peu le code . Il faut rendre ce code plus lisible. On peut faire un call hierarchy, ou regarder le code pour savoir à quoi sert le code
@@ -204,7 +214,6 @@ On retourne sur la méthode, on distingue qu'il y a plusieurs parties :
 - Une partie calcul
 => On doit pouvoir externaliser ces méthodes, mais avant toute chose . Il faut avoir une sécurité pour le refacto, il faut une couverture de test
 On a déja crée les test dans RestaurantServiceIT
-FIXME retrouver le terme dans la présentation de Thomas Perrain et Y
 
 Refacto:
 - 1ére chose à faire : rassembler les vaiables au + prés de leur utilisation
@@ -260,7 +269,7 @@ Préciser dans IntelliJ que l'on considére que le code appellé uniquement dans
 Aller dans RestaurantService la méthode getRestaurantFeteDesMeres2019 ne sert à rien
 Aller dans PlatService une constante ne sert à rien
 
-FIXME vérifier la suppression du code mort dans IntelliJ avec les méthodes appelés uniquement dans les TU
+TODO vérifier la suppression du code mort dans IntelliJ avec les méthodes appelés uniquement dans les TU
 
 ```
  @Test
@@ -317,9 +326,7 @@ et sur les paramétres :
 ```
 => Redémarrer l'appli et remontrer le résultat
 
-FIXME nettoyer readme
-FIXME rajouter un schéma dans le readme
-FIXME faut rajouter dans la présentation des exemples pour les commentaires dans le code ?
+TODO faut rajouter dans la présentation des exemples pour les commentaires dans le code ?
 
 
 
