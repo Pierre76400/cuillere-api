@@ -33,6 +33,11 @@ Demander à l'auditoire ou est ce que l'on peut gagner de la place
 
 ## Démo
 
+Migrer la donnée nom de char vers varchar:
+```
+ALTER TABLE restaurant ALTER COLUMN nom TYPE varchar(255)
+```
+
 Migrer la donnée de date => datetime
 ```
 ALTER TABLE restaurant ALTER COLUMN date_creation TYPE date
@@ -51,17 +56,13 @@ ALTER TABLE restaurant RENAME COLUMN vegetarien_migration TO vegetarien;
 Faire un vaccum pour voir l'espace libéré
 ```
 VACUUM (FULL, VERBOSE, ANALYZE, TRUNCATE) public.restaurant;
-VACUUM (FULL, VERBOSE, ANALYZE, TRUNCATE) public.plat;
-VACUUM (FULL, VERBOSE, ANALYZE, TRUNCATE) public.avis;
 ```
+La commande VACUUM dans PostgreSQL sert à libérer l'espace disque occupé par des objets obsolètes ou supprimés, à réorganiser les données stockées et à maintenir la performance du système. 
 
-On est passé de 3,8Mo à 3,5M
-TODO vérifier
+On est passé de 11 à 3.6 Mo
 
 
 ## Démo partie table Avis
-
-Avant modif 8.9 Mo
 
 Passer le type de donnée de la colonne "note" de int8 à smallint
 
@@ -69,7 +70,7 @@ Passer le type de donnée de la colonne "note" de int8 à smallint
 ALTER TABLE avis ALTER COLUMN note TYPE smallint
 ```
 
-Supprimer la colonne "ville"
+Supprimer la colonne "lieu"
 
 ```
 ALTER TABLE avis DROP COLUMN lieu;
@@ -79,12 +80,10 @@ Faire Vaccum
 ```
 VACUUM (FULL, VERBOSE, ANALYZE, TRUNCATE) public.avis;
 ```
-On est passé à 8,4 Mo
-
+On est passé de 9,7 à 8,4 Mo
 
 ## Démo supprimer vieille tables inutiles
 drop table tmp_restaurant_2015
-
 
 ## Ce qui n'est pas vu dans la démo
 Table avis : supprimer les commentaires obsoléte (par exemple de + de 5 ans)
@@ -107,6 +106,7 @@ Lancer la recherche restaurant "/restaurants/_search" avec la valeur "assembleur
 
 Lancer la recherche restaurant "/restaurants/_search" avec la valeur "Abordable"
 => Cela retourne beaucoup des résultats, c'est lent et volumineux
+TODO noter taille et temps
 
 Généralement seul les premiers résultats sont pertinents.
 - Il faut rajouter les parametres numPage et taillePage dans la methode recherche du controler RestaurantControler
@@ -118,7 +118,9 @@ Généralement seul les premiers résultats sont pertinents.
 - Trier par id (aller au niveau du dao et rajouter orderbyId
 - Modifier le nombre de résultat au RestaurantControler.rechercherRestaurant
 - Rajouter les paramétres de pagination dans l'appel Rest : &numPage=1&taillePage=20
+=> Le résultat fait désormais quelque Ko et il est beaucop plus rapide
 
+TODO
 A CREUSER (la requête count):
 @Query(value = "SELECT * FROM USERS WHERE LASTNAME = ?1",
 countQuery = "SELECT count(*) FROM USERS WHERE LASTNAME = ?1",
@@ -127,7 +129,7 @@ Page<User> findByLastname(String lastname, Pageable pageable);
 
 
 ## Afficher les requêtes
-Le service de recherche prend toujours trop de temps (500ms sur mon poste)
+Le service de recherche prend toujours trop de temps (380ms sur mon poste)
 => Il faut comprendre ce qui se passe donc afficher les requêtes
 Pour afficher les requêtes : logging.level.org.hibernate.SQL=DEBUG dans application.properties
 => On voit plein de requêtes
