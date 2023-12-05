@@ -29,25 +29,8 @@ public class CuillereConfig {
 		KafkaTemplate<String, AvisCreationDto> template = new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(props));
 		return template;
 	}
-/*
 	@Bean
-	public KafkaTemplate<String, AvisCreationDto> avisKafkaTemplate() {
-		return new KafkaTemplate<>(producerFactory() );
+	public ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
+		return new ObservedAspect(observationRegistry);
 	}
-
-
-	@Bean
-	public ProducerFactory<String, AvisCreationDto> producerFactory() {
-
-		Map<String, Object> props = new HashMap<>();
-		props.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,bootstrapServers);
-		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
-		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
-		return new DefaultKafkaProducerFactory<String, AvisCreationDto>(props);
-	}
-*/
-@Bean
-public ObservedAspect observedAspect(ObservationRegistry observationRegistry) {
-	return new ObservedAspect(observationRegistry);
-}
 }

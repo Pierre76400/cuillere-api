@@ -1,10 +1,5 @@
 package fr.softeam.cuillereapi.api;
 
-import fr.softeam.cuillereapi.model.Restaurant;
-import jakarta.persistence.ManyToOne;
-
-import java.time.LocalDate;
-
 public class AvisCreationDto {
 	private String commentaire;
 

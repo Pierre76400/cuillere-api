@@ -1,6 +1,5 @@
 package fr.softeam.cuillereapi.service;
 
-import fr.softeam.cuillereapi.api.RestaurantDto;
 import fr.softeam.cuillereapi.model.Avis;
 import fr.softeam.cuillereapi.model.CategoriePlat;
 import fr.softeam.cuillereapi.model.Plat;

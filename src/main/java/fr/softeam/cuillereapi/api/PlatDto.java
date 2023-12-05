@@ -1,9 +1,4 @@
 package fr.softeam.cuillereapi.api;
-
-import fr.softeam.cuillereapi.model.CategoriePlat;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-
 public class PlatDto {
 	private String libelle;
 
