@@ -2,8 +2,6 @@ package fr.softeam.cuillereapi.model;
 
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 @Entity
 public class CategoriePlat {

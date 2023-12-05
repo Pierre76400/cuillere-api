@@ -4,16 +4,13 @@ import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.AvisCreationDto;
 import fr.softeam.cuillereapi.api.AvisDto;
 import fr.softeam.cuillereapi.repository.AvisRepository;
-import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import fr.softeam.cuillereapi.service.AvisService;
-import fr.softeam.cuillereapi.service.DatabaseService;
 import fr.softeam.cuillereapi.service.KafkaAvisService;
 import io.micrometer.observation.annotation.Observed;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 

@@ -26,8 +26,7 @@ public class CuillereConfig {
 		props.put(ProducerConfig.KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
 		props.put(ProducerConfig.VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
 
-		KafkaTemplate<String, AvisCreationDto> template = new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(props));
-		return template;
+		return new KafkaTemplate<>(new DefaultKafkaProducerFactory<>(props));
 	}
 	@Bean
 	public ObservedAspect observedAspect(ObservationRegistry observationRegistry) {

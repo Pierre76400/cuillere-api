@@ -19,7 +19,7 @@ public class ConvertUtil {
 		dto.setId(r.getId());
 		dto.setNom(r.getNom());
 		dto.setAdresse(r.getAdresse());
-		dto.setVegetarien(r.getVegetarien().equals("OUI")?true:false);
+		dto.setVegetarien(r.getVegetarien().equals("OUI"));
 
 		return dto;
 	}

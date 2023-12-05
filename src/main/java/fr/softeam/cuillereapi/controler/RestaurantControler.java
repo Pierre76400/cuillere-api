@@ -30,7 +30,7 @@ public class RestaurantControler {
 	@GetMapping("/restaurants")
 	List<RestaurantDto> all() {
 		return StreamSupport.stream(restaurantRepository.findAll().spliterator(), false)
-				.map(r-> ConvertUtil.restaurantEntityToDto(r)).collect(Collectors.toList());
+				.map(r-> ConvertUtil.restaurantEntityToDto(r)).toList();
 	}
 
 	@GetMapping("/restaurants/{idRestaurant}")
@@ -58,7 +58,6 @@ public class RestaurantControler {
 		return platService.getPlats(idRestaurant);
 	}
 
-	//TODO Est ce que l'url est bonne ?
 	@GetMapping("/restaurants/_search")
 	RechercheRestaurantDto rechercherRestaurant(@RequestParam String  nomRestaurant) {
 		RechercheRestaurantDto result=new RechercheRestaurantDto();
