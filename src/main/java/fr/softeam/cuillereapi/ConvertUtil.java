@@ -50,6 +50,17 @@ public class ConvertUtil {
 		return dto;
 	}
 
+	public static PlatDto platEntityVersDto(Plat p) {
+		PlatDto dto = new PlatDto();
+
+		dto.setCategoriePlat(p.getCategoriePlat().getCode());
+		dto.setLibelleCategoriePlat(p.getCategoriePlat().getLibelle());
+		dto.setLibelle(p.getLibelle());
+		dto.setPrix(p.getPrix());
+
+		return dto;
+	}
+
 	public static AvisDto avisEntityToDto(Avis avis){
 		AvisDto dto=new AvisDto();
 

@@ -195,4 +195,100 @@ public class DatabaseService {
 		categoriePlatRepository.save(boisson);
 	}
 
+
+	public void fatInit() {
+		int cpt=1;
+
+		CategoriePlat entree=new CategoriePlat();
+		entree.setCode("ENT");
+		entree.setLibelle("Entrée");
+		categoriePlatRepository.save(entree);
+
+		CategoriePlat cpplat=new CategoriePlat();
+		cpplat.setCode("PLA");
+		cpplat.setLibelle("Plat");
+		categoriePlatRepository.save(cpplat);
+
+		CategoriePlat dessert=new CategoriePlat();
+		dessert.setCode("DES");
+		dessert.setLibelle("Dessert");
+		categoriePlatRepository.save(dessert);
+
+		CategoriePlat boisson=new CategoriePlat();
+		boisson.setCode("BOI");
+		boisson.setLibelle("Boisson");
+		categoriePlatRepository.save(boisson);
+
+		for(String adj:adjectifs_smart){
+			for(String nom:noms){
+				Restaurant r = new Restaurant();
+				r.setNom(adj + " " + nom);
+				r.setAdresse("" + cpt);
+				r.setVegetarien(random.nextInt(2) == 1 ? "OUI" : "NON");
+				r.setDateCreation(LocalDateTime.of(2000+random.nextInt(23),1+random.nextInt(12),1+random.nextInt(23),0,0));
+				// Paris, France lat : 48.8566d, long : 2.3522d
+				r.setLa(48.8d+random.nextInt(100)*0.001);
+				r.setLo(2.3d+random.nextInt(100)*0.001);
+				cpt++;
+
+				List<Plat> plats=new ArrayList<>();
+				for(int i=0;i<random.nextInt(5);i++){
+					Plat plat=new Plat();
+
+					plat.setCategoriePlat(categoriePlatRepository.findById("PLA").get());
+					plat.setLibelle(nomPlats.get(i));
+					plat.setPrix(((double) (10+random.nextInt(10))+0.1d*random.nextInt(10)));
+					plats.add(plat);
+				}
+
+				r.setPlats(plats);
+				restaurantRepository.save(r);
+
+				for(Plat p:r.getPlats()){
+					p.setRestaurant(r);
+					platRepository.save(p);
+				}
+
+				List<Avis> aviss=new ArrayList<>();
+				for(int i=0;i<random.nextInt(10);i++){
+					Avis avis=new Avis();
+
+					avis.setNote((long) (1+random.nextInt(5)));
+					avis.setAuteur(prenoms.get(random.nextInt(prenoms.size())));
+
+					if(avis.getNote()>2l){
+						avis.setCommentaire(adjectifsPositifs.get(random.nextInt(adjectifsPositifs.size())));
+					}
+					else{
+						avis.setCommentaire(adjectifsNegatifs.get(random.nextInt(adjectifsNegatifs.size())));
+					}
+					avis.setLieu(villes.get(random.nextInt(villes.size())));
+					avis.setDateCreation(LocalDate.of(2016+random.nextInt(7), 1+random.nextInt(12), 1+random.nextInt(23)));
+
+					aviss.add(avis);
+				}
+
+				r.setAvis(aviss);
+
+				for(Avis avis:aviss){
+					avis.setRestaurant(r);
+					avisRepository.save(avis);
+				}
+
+				if (cpt % 1000 == 0) {
+					entityManager.flush();
+					entityManager.clear();
+					logger.info("Nb restaurants créés {}",cpt);
+				}
+			}
+			entityManager.flush();
+			entityManager.clear();
+		}
+		logger.info("Tous les restaurants ont été créés. Nb {}",cpt);
+		entityManager.createNativeQuery("create table tmp_restaurant_2019 as \n" +
+				"select * \n" +
+				"from restaurant r \n" +
+				"where r.date_creation <'01/01/2020'").executeUpdate();
+		logger.info("Fin création table tmp_restaurant_2019");
+	}
 }
