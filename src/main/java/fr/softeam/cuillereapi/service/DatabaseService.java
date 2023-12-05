@@ -167,7 +167,7 @@ public class DatabaseService {
 
 			plat.setCategoriePlat(categoriePlatRepository.findById("DES").get());
 			plat.setLibelle(nomDesserts.get(i));
-			plat.setPrix(((double) (10+random.nextInt(5))+0.1d*random.nextInt(10)));
+			plat.setPrix(( (10+random.nextInt(5))+0.1d*random.nextInt(10)));
 			plats.add(plat);
 		}
 		return plats;
