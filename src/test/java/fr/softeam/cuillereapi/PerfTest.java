@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.IntStream;
 
 @Disabled("Faux tests unitaire pour les besoins de la démo")
-public class PerfTest {
+class PerfTest {
 	static Logger logger = LoggerFactory.getLogger(PerfTest.class);
 
 	@Test
