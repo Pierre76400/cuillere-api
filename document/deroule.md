@@ -172,8 +172,17 @@ A CREUSER:
 Le code "avisRepository.deleteByDateCreationLessThan(datePurge);" fait la même chose que "avisRepository.findByDateCreationLessThan(datePurge).iterator().forEachRemaining(avis -> avisRepository.delete(avis))"
 => Lequel est le mieux , pour le moment j'ai gardé le 2éme car il illustre mieux la bad practice (par contre le 1er illustre le fait qu'il faut toujours faie attention aux requêtes génèrées)
 
+# 3 - NEW VERSION Outils qualité de code et usine logicielle 
+On a déja installé au préalable "sonar" et lancé l'analyse
+TODO Si ok à mettre dans les prérequis de la demo
 
-# 3 - Outils qualité de code et usine logicielle
+Aller dans les défauts :
+- Overview-> Overall code -> ConvertUtil : la méthode platEntityToDto est dupliqué => Il faut supprimer la copie
+- AvisControler.java => Supprimer la ligne de code en commentaire
+- DatabaseService.java la complexité du code
+
+
+# 3 - VERSION DEPRECATED Outils qualité de code et usine logicielle 
 On a déja installé au préalable "sonar"
 => Montrer le docker-compose
 Etapes:
@@ -352,3 +361,8 @@ Brancher Grafana ?????
 
 FIXME préparer contener avec l'appli
 TODO lien avec le GR491
+
+# Détecter les dépendances inutiles
+https://www.baeldung.com/maven-unused-dependencies
+Outil maven qui permet de détecter les dépendances inutiles
+maven-dependency-plugin
