@@ -3,6 +3,7 @@ package fr.softeam.cuillereapi.controler;
 import fr.softeam.cuillereapi.ConvertUtil;
 import fr.softeam.cuillereapi.api.*;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
+import fr.softeam.cuillereapi.service.AvisService;
 import fr.softeam.cuillereapi.service.PlatService;
 import fr.softeam.cuillereapi.service.RestaurantService;
 import org.springframework.http.HttpStatus;
@@ -20,11 +21,13 @@ public class RestaurantControler {
 	private final RestaurantRepository restaurantRepository;
 	private final RestaurantService restaurantService;
 	private final PlatService platService;
+	private final AvisService avisService;
 
-	RestaurantControler(RestaurantRepository restaurantRepository, RestaurantService restaurantService,PlatService platService) {
+	RestaurantControler(RestaurantRepository restaurantRepository, RestaurantService restaurantService,PlatService platService,AvisService avisService) {
 		this.restaurantRepository = restaurantRepository;
 		this.restaurantService = restaurantService;
 		this.platService = platService;
+		this.avisService = avisService;
 	}
 
 	@GetMapping("/restaurants")
@@ -56,6 +59,11 @@ public class RestaurantControler {
 	@GetMapping("/restaurants/{idRestaurant}/plats")
 	List<PlatDto> getPlats(@PathVariable Long idRestaurant) {
 		return platService.getPlats(idRestaurant);
+	}
+
+	@GetMapping("/restaurants/{idRestaurant}/avis")
+	List<AvisDto> getAvis(@PathVariable Long idRestaurant) {
+		return avisService.getAvis(idRestaurant);
 	}
 
 	@GetMapping("/restaurants/_search")
