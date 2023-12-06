@@ -5,6 +5,7 @@ Pré requis:
 - Installer docker-desktop
 - Installer postman puis importer la collection qui se trouve dans le projet /document/cuillere-api.postman_collection.json
 - Un client Sql avec Ihm (J'utilise personnellement DBeaver)
+- Lancer sonar et anlyser le projet cf. chapitre # Installer sonar
 
 ## Init
 Il faut avant la démo initialiser le projet:
@@ -19,7 +20,6 @@ Lancer l'application (conteneur + SB) puis aller dans Postman , Onglet Applicati
 Présenter les 4 onglets et lancer quelques exemples (Garder les "mauvais exemples, comme les services qui récupére plusieurs Mo d'un coup (cf. get PLATS), pour plus tard)" )
 
 # 1 - Base de donnée
-TODO expliquer but de cette partie
 
 Présentation de la table Restaurant sur l'analyseur de requête : présentation des données, du modéle de la place prise
 Environ 30 000 restaurants, 100 000 avis et plats. Taille totale base 20 Mo
@@ -174,7 +174,6 @@ Le code "avisRepository.deleteByDateCreationLessThan(datePurge);" fait la même 
 
 # 3 - NEW VERSION Outils qualité de code et usine logicielle 
 On a déja installé au préalable "sonar" et lancé l'analyse
-TODO Si ok à mettre dans les prérequis de la demo
 
 Aller dans les défauts :
 - Overview-> Overall code -> ConvertUtil : la méthode platEntityToDto est dupliqué => Il faut supprimer la copie
@@ -270,8 +269,6 @@ Mettre en place l'asynchrone:
 - Le message est consommé. Montrer l'avis
 - Relancer le test de création massif , montrer le résultat dans VisualVm et comparer à la solution synchrone (cf. screenshot)
 
-=> TODO PRéciser que dans l'abslue le consommateur doit être dans une aute appli
-
 # 6 - Obsolescence
 Il existe des outils pour détecter le code mort :
 - Dans eclipse, plugin Ucd detector
@@ -340,7 +337,6 @@ et sur les paramétres :
 ```
 => Redémarrer l'appli et remontrer le résultat
 
-TODO faut rajouter dans la présentation des exemples pour les commentaires dans le code ?
 
 
 
@@ -357,15 +353,25 @@ http://localhost:8080/actuator/metrics/avisService
 Ne pas oublier d'exposer tous les actuators
 management.endpoints.web.exposure.include=*
 
-TODO : exposer les services Avis dans AvisService
 Exposer service restaurant dans metrics
 PAsser ces metrics à prometheus
 Brancher Grafana ?????
 
-FIXME préparer contener avec l'appli
+TODO préparer contener avec l'appli
 TODO lien avec le GR491
 
 # Détecter les dépendances inutiles
 https://www.baeldung.com/maven-unused-dependencies
 Outil maven qui permet de détecter les dépendances inutiles
 maven-dependency-plugin
+
+# Installer sonar
+On a déja installé au préalable "sonar" dans le docker-compose
+Etapes:
+- La premiére fois on doit changer le mot (login/mdp par défaut : admin/admin)
+- Créer un projet en local
+- Saisir "cuillere-api" dans le nom du projet
+- Use "global setting" puis next
+-  How do you want to analyze your repository? => "Locally"
+-  Générer le token=> Continue => Maven => Copier la ligne maven et la lancer (!!! Supprimer les "\" dans la cmd maven)
+- Au bout de quelque minute(environ 2) le projet apparait
