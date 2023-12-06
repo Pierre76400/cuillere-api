@@ -43,7 +43,7 @@ public class RestaurantControler {
 		if(rest==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(rest, HttpStatus.CREATED);
+		return new ResponseEntity<>(rest, HttpStatus.OK);
 	}
 
 	@GetMapping("/restaurants/{idRestaurant}/details")
@@ -53,7 +53,7 @@ public class RestaurantControler {
 		if(rest==null){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}
-		return new ResponseEntity<>(rest, HttpStatus.CREATED);
+		return new ResponseEntity<>(rest, HttpStatus.OK);
 	}
 
 	@GetMapping("/restaurants/{idRestaurant}/plats")

@@ -1,7 +1,7 @@
 package fr.softeam.cuillereapi;
 
 import fr.softeam.cuillereapi.api.AvisCreationDto;
-import fr.softeam.cuillereapi.controler.AvisControler;
+import fr.softeam.cuillereapi.api.RechercheRestaurantDto;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
@@ -21,39 +21,47 @@ class PerfTest {
 
 	@Test
 	void test(){
-		callGetRestaurant(1);
+		long idRestau=getPremierIdRestaurant();
+		callGetRestaurant(1,idRestau);
 	}
 
 	//
 	@Test
 	void testParrallelGetRestaurant(){
+		long idRestau=getPremierIdRestaurant();
 		AtomicInteger cpt= new AtomicInteger();
-		IntStream.range(0, 10_000_000).parallel().forEach(x->callGetRestaurant(cpt.getAndIncrement()));
+		IntStream.range(0, 10_000_000).parallel().forEach(x->callGetRestaurant(cpt.getAndIncrement(), idRestau));
 	}
 
 
 	@Test
 	void testCreerAvis(){
-		callPostAvis(1);
+		long idRestau=getPremierIdRestaurant();
+		callPostAvis(1, idRestau);
 	}
 
 	@Test
 	void testParrallelCreerAvis(){
+		long idRestau=getPremierIdRestaurant();
 		AtomicInteger cpt= new AtomicInteger();
-		IntStream.range(0, 100).parallel().forEach(x->callPostAvis(cpt.getAndIncrement()));
+		IntStream.range(0, 100).parallel().forEach(x->callPostAvis(cpt.getAndIncrement(),idRestau));
 	}
 
-	private static void callGetRestaurant(int cpt) {
+	@Test
+	void testRecupererPremierRestaurant(){
+		logger.info("Premier id restaurant = "+getPremierIdRestaurant());
+	}
+
+	private static void callGetRestaurant(int cpt, long idRestau) {
 		RestTemplate restTemplate = new RestTemplate();
-		//FIXME à la place trouver une facon de récupérer dynmiquement l'id
-		String fooResourceUrl = "http://localhost:8080/restaurants/160956";
+		String fooResourceUrl = "http://localhost:8080/restaurants/"+idRestau;
 		ResponseEntity<String> response
 			= restTemplate.getForEntity(fooResourceUrl , String.class);
 		logger.info("cpt "+cpt);
-		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+		Assertions.assertEquals(HttpStatus.OK,response.getStatusCode());
 	}
 
-	private static void callPostAvis(int cpt) {
+	private static void callPostAvis(int cpt, long idRestau) {
 		RestTemplate restTemplate = new RestTemplate();
 		String fooResourceUrl
 			= "http://localhost:8080/avis";
@@ -62,8 +70,7 @@ class PerfTest {
 		avisCreation.setAuteur("Paul");
 		avisCreation.setNote(4l);
 
-		//FIXME à la place trouver une facon de récupérer dynmiquement l'id
-		avisCreation.setIdRestaurant(160956l);
+		avisCreation.setIdRestaurant(idRestau);
 		avisCreation.setCommentaire("Pas mal");
 
 		HttpEntity<AvisCreationDto> request = new HttpEntity<>(avisCreation);
@@ -72,5 +79,15 @@ class PerfTest {
 			= restTemplate.postForEntity(fooResourceUrl ,  request, Long.class);
 		logger.info("cpt "+cpt);
 		Assertions.assertEquals(response.getStatusCode(), HttpStatus.CREATED);
+	}
+
+	private Long getPremierIdRestaurant(){
+		RestTemplate restTemplate = new RestTemplate();
+		String fooResourceUrl = "http://localhost:8080/restaurants/_search?nomRestaurant=assembleur";
+		ResponseEntity<RechercheRestaurantDto> response
+				= restTemplate.getForEntity(fooResourceUrl , RechercheRestaurantDto.class);
+
+		Assertions.assertEquals(response.getStatusCode(), HttpStatus.OK);
+		return response.getBody().getRestaurants().get(0).getId();
 	}
 }
