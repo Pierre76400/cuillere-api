@@ -269,6 +269,8 @@ Mettre en place l'asynchrone:
 - Le message est consommé. Montrer l'avis
 - Relancer le test de création massif , montrer le résultat dans VisualVm et comparer à la solution synchrone (cf. screenshot)
 
+=> TODO PRéciser que dans l'abslue le consommateur doit être dans une aute appli
+
 # 6 - Obsolescence
 Il existe des outils pour détecter le code mort :
 - Dans eclipse, plugin Ucd detector
