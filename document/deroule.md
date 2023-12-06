@@ -266,6 +266,7 @@ Mettre en place l'asynchrone:
 		avisService.creerAvis(message);
 	}
 ```
+- Dans le cadre de notre démo on le rajoute dans cuillere-api dans la réalité le consommateur serait surement dans un projet à part pour offrir un meilleur découpage et oermettre une scalabilité horizontale
 - Le message est consommé. Montrer l'avis
 - Relancer le test de création massif , montrer le résultat dans VisualVm et comparer à la solution synchrone (cf. screenshot)
 
