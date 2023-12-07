@@ -4,6 +4,8 @@ import fr.softeam.cuillereapi.service.DatabaseService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.concurrent.atomic.AtomicInteger;
+
 @RestController
 public class InitControler {
 
@@ -18,8 +20,12 @@ public class InitControler {
 	@GetMapping("/init")
 	void init() {
 		databaseService.clearDatabase();
-		databaseService.init();
+		databaseService.initCategoriePlat();
+		databaseService.adjectifs_smart.stream().parallel().forEach(databaseService::initByAdjectifSmart);
+		databaseService.create_tmp_restaurant_2019();
 	}
+
+
 
 
 
