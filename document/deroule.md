@@ -168,7 +168,10 @@ delete from avis where id=?
 Pour optimiser on peut faire une seule requête pour supprimer l'ensemble des résultats
 => On remplace le code dans la méthode supprimeAvisObsoletes par "avisRepository.deleteBulkByDateCreationLessThan(datePurge);"
 
-A CREUSER:
+## Conclusion
+Avant la conclusion lancer la réinit de la base
+
+TODO A CREUSER:
 Le code "avisRepository.deleteByDateCreationLessThan(datePurge);" fait la même chose que "avisRepository.findByDateCreationLessThan(datePurge).iterator().forEachRemaining(avis -> avisRepository.delete(avis))"
 => Lequel est le mieux , pour le moment j'ai gardé le 2éme car il illustre mieux la bad practice (par contre le 1er illustre le fait qu'il faut toujours faie attention aux requêtes génèrées)
 
