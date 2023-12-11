@@ -168,7 +168,10 @@ delete from avis where id=?
 Pour optimiser on peut faire une seule requête pour supprimer l'ensemble des résultats
 => On remplace le code dans la méthode supprimeAvisObsoletes par "avisRepository.deleteBulkByDateCreationLessThan(datePurge);"
 
-A CREUSER:
+## Conclusion
+Avant la conclusion lancer la réinit de la base
+
+TODO A CREUSER:
 Le code "avisRepository.deleteByDateCreationLessThan(datePurge);" fait la même chose que "avisRepository.findByDateCreationLessThan(datePurge).iterator().forEachRemaining(avis -> avisRepository.delete(avis))"
 => Lequel est le mieux , pour le moment j'ai gardé le 2éme car il illustre mieux la bad practice (par contre le 1er illustre le fait qu'il faut toujours faie attention aux requêtes génèrées)
 
@@ -375,3 +378,14 @@ Etapes:
 -  How do you want to analyze your repository? => "Locally"
 -  Générer le token=> Continue => Maven => Copier la ligne maven et la lancer (!!! Supprimer les "\" dans la cmd maven)
 - Au bout de quelque minute(environ 2) le projet apparait
+
+# Outil évaluation
+## Le label API Green Score
+Le label API Green Score est une initiative conçue pour aider les utilisateurs, les concepteurs et les propriétaires d’API à évaluer les impacts environnementaux de leurs APIs. 
+Il est composé d’un guide de bonnes pratiques pour favoriser la transition écologique de manière concrète. Le label a pour fonction d’attester de la conception éco-responsable des APIs.
+Les travaux du label sont dirigés par Yannick Tremblais, IT Innovation Manager du Groupe Rocher. Il réunit d’ores et déjà plusieurs membres et entreprises contributrices comme la SNCF, BPCE, Combo, L’Oréal, ENEDIS, AXA ou encore EDF.
+cf. support : https://www.collectif-api-thinking.com/realisations (Guide et grille)
+
+C'est une boite à outil qui permet d'évaleur son impact écologique
+##Eco code
+Plugin sonar avec régle java : https://github.com/green-code-initiative
