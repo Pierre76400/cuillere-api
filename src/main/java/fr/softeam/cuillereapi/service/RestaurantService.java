@@ -8,6 +8,8 @@ import fr.softeam.cuillereapi.repository.RestaurantCustomRepository;
 import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.Query;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -46,6 +48,11 @@ public class RestaurantService {
 		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant).stream().map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
 	}
 
+	public List<RestaurantDto> rechercherRestaurant(String nomRestaurant,int numPage,int taillePage) {
+		Pageable pageable= PageRequest.of(numPage,taillePage);
+
+		return restaurantRepository.findByNomContainingIgnoreCaseOrderById(nomRestaurant,pageable).stream().map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
+	}
 
 	public RestaurantDetailDto getRestaurantFeteDesMeres2019(Long idRestaurant) {
 		RestaurantDetailDto rest=restaurantEntityToDetailDto(repository.getDetailsById(idRestaurant));
