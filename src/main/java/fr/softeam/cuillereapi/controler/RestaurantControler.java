@@ -79,7 +79,7 @@ public class RestaurantControler {
 	RechercheRestaurantDto rechercherRestaurantPagine(@RequestParam String  nomRestaurant,@RequestParam int numPage,@RequestParam int taillePage) {
 		RechercheRestaurantDto result=new RechercheRestaurantDto();
 		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant,numPage,taillePage));
-		result.setNbResultat(result.getRestaurants().size());
+		result.setNbResultat((int) restaurantService.compterRestaurant(nomRestaurant));
 		return result;
 	}
 }
