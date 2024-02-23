@@ -44,4 +44,8 @@ public class AvisService {
 		return avisRepository.findByRestaurantId(idRestaurant).stream().map(ConvertUtil::avisEntityToDto).toList();
 	}
 
+	public long compterAvis(Long idRestaurant) {
+		return avisRepository.countByRestaurantId(idRestaurant);
+	}
+
 }

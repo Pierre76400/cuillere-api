@@ -82,4 +82,15 @@ public class RestaurantControler {
 		result.setNbResultat((int) restaurantService.compterRestaurant(nomRestaurant));
 		return result;
 	}
+
+
+	@GetMapping("/restaurants/_searchPagineNbAvis")
+	RechercheRestaurantDto rechercherRestaurantPagineAvecNbAvis(@RequestParam String  nomRestaurant,@RequestParam int numPage,@RequestParam int taillePage) {
+		RechercheRestaurantDto result=new RechercheRestaurantDto();
+		List<RestaurantDto> restaurants = restaurantService.rechercherRestaurant(nomRestaurant, numPage, taillePage);
+		restaurants.parallelStream().forEach(r->r.setNbAvis((int) avisService.compterAvis(r.getId())));
+		result.setRestaurants(restaurants);
+		result.setNbResultat((int) restaurantService.compterRestaurant(nomRestaurant));
+		return result;
+	}
 }

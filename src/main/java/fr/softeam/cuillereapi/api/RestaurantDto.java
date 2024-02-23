@@ -6,6 +6,8 @@ public class RestaurantDto {
 	private String adresse;
 	private boolean vegetarien;
 
+	private Integer nbAvis;
+
 	public Long getId() {
 		return id;
 	}
@@ -36,5 +38,13 @@ public class RestaurantDto {
 
 	public void setVegetarien(boolean vegetarien) {
 		this.vegetarien = vegetarien;
+	}
+
+	public Integer getNbAvis() {
+		return nbAvis;
+	}
+
+	public void setNbAvis(Integer nbAvis) {
+		this.nbAvis = nbAvis;
 	}
 }

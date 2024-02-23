@@ -18,4 +18,6 @@ public interface AvisRepository extends JpaRepository<Avis, Long> {
 	Integer deleteBulkByDateCreationLessThan(@Param("date") LocalDate date);
 
 	List<Avis> findByRestaurantId(long restaurantId);
+
+	long countByRestaurantId(long restaurantId);
 }
