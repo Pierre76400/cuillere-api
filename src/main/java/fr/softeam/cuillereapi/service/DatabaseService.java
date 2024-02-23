@@ -11,6 +11,7 @@ import fr.softeam.cuillereapi.repository.RestaurantRepository;
 import jakarta.persistence.EntityManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -58,22 +59,40 @@ public class DatabaseService {
 
 	private Random random = new Random();
 
-	public DatabaseService(RestaurantRepository restaurantRepository, AvisRepository avisRepository, CategoriePlatRepository categoriePlatRepository, PlatRepository platRepository,EntityManager entityManager) {
+	private Environment env;
+
+	public DatabaseService(RestaurantRepository restaurantRepository, AvisRepository avisRepository, CategoriePlatRepository categoriePlatRepository, PlatRepository platRepository,EntityManager entityManager,Environment env) {
 		this.restaurantRepository = restaurantRepository;
 		this.avisRepository = avisRepository;
 		this.categoriePlatRepository = categoriePlatRepository;
 		this.platRepository = platRepository;
 		this.entityManager=entityManager;
+		this.env=env;
 	}
 
 
 	public void clearDatabase() {
 		logger.info("Début cleardatabase");
-		entityManager.createNativeQuery("TRUNCATE TABLE avis CONTINUE IDENTITY CASCADE").executeUpdate();
+		if (Arrays.asList(env.getActiveProfiles()).contains("local")) {
+			avisRepository.deleteAll();
+		}
+		else{
+			entityManager.createNativeQuery("TRUNCATE TABLE avis CONTINUE IDENTITY CASCADE").executeUpdate();
+		}
 		logger.info("Fin suppression avis");
-		entityManager.createNativeQuery("TRUNCATE TABLE plat CONTINUE IDENTITY CASCADE").executeUpdate();
+		if (Arrays.asList(env.getActiveProfiles()).contains("local")) {
+			platRepository.deleteAll();
+		}
+		else{
+			entityManager.createNativeQuery("TRUNCATE TABLE plat CONTINUE IDENTITY CASCADE").executeUpdate();
+		}
 		logger.info("Fin suppression plats");
-		entityManager.createNativeQuery("TRUNCATE TABLE restaurant CONTINUE IDENTITY CASCADE").executeUpdate();
+		if (Arrays.asList(env.getActiveProfiles()).contains("local")) {
+			restaurantRepository.deleteAll();
+		}
+		else {
+			entityManager.createNativeQuery("TRUNCATE TABLE restaurant CONTINUE IDENTITY CASCADE").executeUpdate();
+		}
 		logger.info("Fin suppression restaurant");
 		categoriePlatRepository.deleteAll();
 		logger.info("Fin suppression catégorie");
@@ -82,11 +101,19 @@ public class DatabaseService {
 	}
 
 	public void create_tmp_restaurant_2019(){
-		entityManager.createNativeQuery("""
+		String query="""
        			create table tmp_restaurant_2019 as 
     			select *
 				from restaurant r 
-				where r.date_creation <'01/01/2020'""").executeUpdate();
+				where r.date_creation <'01/01/2020'""";
+		if (Arrays.asList(env.getActiveProfiles()).contains("local")) {
+			query="""
+       			create table tmp_restaurant_2019 as 
+    			select *
+				from restaurant r 
+				where r.date_creation <'2020-01-01'""";
+		}
+		entityManager.createNativeQuery(query).executeUpdate();
 		logger.info("Fin création table tmp_restaurant_2019");
 	}
 
