@@ -33,7 +33,7 @@ public class RestaurantControler {
 	@GetMapping("/restaurants/_search")
 	RechercheRestaurantDto rechercherRestaurant(@RequestParam String  nomRestaurant) {
 		RechercheRestaurantDto result=new RechercheRestaurantDto();
-		result.setRestaurants(restaurantService.rechercherRestaurantPagine(nomRestaurant));
+		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant));
 		result.setNbResultat(result.getRestaurants().size());
 		return result;
 	}

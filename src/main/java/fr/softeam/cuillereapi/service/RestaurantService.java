@@ -51,7 +51,7 @@ public class RestaurantService {
 		return restaurantRepository.countByNomContainingIgnoreCase(nomRestaurant);
 	}
 
-	public List<RestaurantDto> rechercherRestaurantPagine(String nomRestaurant) {
+	public List<RestaurantDto> rechercherRestaurant(String nomRestaurant) {
 		if(nomRestaurant==null || nomRestaurant.isEmpty()){
 			return StreamSupport.stream(restaurantRepository.findAll().spliterator(),false).map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
 		}
