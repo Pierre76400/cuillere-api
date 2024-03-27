@@ -30,6 +30,15 @@ public class RestaurantControler {
 		this.avisService = avisService;
 	}
 
+
+	@GetMapping("/restaurants/_search")
+	RechercheRestaurantDto rechercherRestaurant(@RequestParam String  nomRestaurant) {
+		RechercheRestaurantDto result=new RechercheRestaurantDto();
+		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant));
+		result.setNbResultat(result.getRestaurants().size());
+		return result;
+	}
+
 	@GetMapping("/restaurants")
 	List<RestaurantDto> all() {
 		return StreamSupport.stream(restaurantRepository.findAll().spliterator(), false)
@@ -66,13 +75,6 @@ public class RestaurantControler {
 		return avisService.getAvis(idRestaurant);
 	}
 
-	@GetMapping("/restaurants/_search")
-	RechercheRestaurantDto rechercherRestaurant(@RequestParam String  nomRestaurant) {
-		RechercheRestaurantDto result=new RechercheRestaurantDto();
-		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant));
-		result.setNbResultat(result.getRestaurants().size());
-		return result;
-	}
 
 
 	@GetMapping("/restaurants/_searchPagine")
