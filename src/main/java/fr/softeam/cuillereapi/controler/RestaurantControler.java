@@ -11,7 +11,6 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 @RestController
@@ -34,7 +33,7 @@ public class RestaurantControler {
 	@GetMapping("/restaurants/_search")
 	RechercheRestaurantDto rechercherRestaurant(@RequestParam String  nomRestaurant) {
 		RechercheRestaurantDto result=new RechercheRestaurantDto();
-		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant));
+		result.setRestaurants(restaurantService.rechercherRestaurantPagine(nomRestaurant));
 		result.setNbResultat(result.getRestaurants().size());
 		return result;
 	}
@@ -80,7 +79,7 @@ public class RestaurantControler {
 	@GetMapping("/restaurants/_searchPagine")
 	RechercheRestaurantDto rechercherRestaurantPagine(@RequestParam String  nomRestaurant,@RequestParam int numPage,@RequestParam int taillePage) {
 		RechercheRestaurantDto result=new RechercheRestaurantDto();
-		result.setRestaurants(restaurantService.rechercherRestaurant(nomRestaurant,numPage,taillePage));
+		result.setRestaurants(restaurantService.rechercherRestaurantPagine(nomRestaurant,numPage,taillePage));
 		result.setNbResultat((int) restaurantService.compterRestaurant(nomRestaurant));
 		return result;
 	}
@@ -89,7 +88,7 @@ public class RestaurantControler {
 	@GetMapping("/restaurants/_searchPagineNbAvis")
 	RechercheRestaurantDto rechercherRestaurantPagineAvecNbAvis(@RequestParam String  nomRestaurant,@RequestParam int numPage,@RequestParam int taillePage) {
 		RechercheRestaurantDto result=new RechercheRestaurantDto();
-		List<RestaurantDto> restaurants = restaurantService.rechercherRestaurant(nomRestaurant, numPage, taillePage);
+		List<RestaurantDto> restaurants = restaurantService.rechercherRestaurantPagine(nomRestaurant, numPage, taillePage);
 		restaurants.parallelStream().forEach(r->r.setNbAvis((int) avisService.compterAvis(r.getId())));
 		result.setRestaurants(restaurants);
 		result.setNbResultat((int) restaurantService.compterRestaurant(nomRestaurant));

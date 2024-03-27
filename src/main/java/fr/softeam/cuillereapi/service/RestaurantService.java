@@ -37,6 +37,12 @@ public class RestaurantService {
 		this.entityManager = entityManager;
 	}
 
+	public List<RestaurantDto> rechercherRestaurantPagine(String nomRestaurant, int numPage, int taillePage) {
+		Pageable pageable= PageRequest.of(numPage,taillePage);
+
+		return restaurantRepository.findByNomContainingIgnoreCaseOrderById(nomRestaurant,pageable).stream().map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
+	}
+
 	public RestaurantDetailDto getRestaurant(Long idRestaurant) {
 		return restaurantEntityToDetailDto(repository.getDetailsById(idRestaurant));
 	}
@@ -45,17 +51,11 @@ public class RestaurantService {
 		return restaurantRepository.countByNomContainingIgnoreCase(nomRestaurant);
 	}
 
-	public List<RestaurantDto> rechercherRestaurant(String nomRestaurant) {
+	public List<RestaurantDto> rechercherRestaurantPagine(String nomRestaurant) {
 		if(nomRestaurant==null || nomRestaurant.isEmpty()){
 			return StreamSupport.stream(restaurantRepository.findAll().spliterator(),false).map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
 		}
 		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant).stream().map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
-	}
-
-	public List<RestaurantDto> rechercherRestaurant(String nomRestaurant,int numPage,int taillePage) {
-		Pageable pageable= PageRequest.of(numPage,taillePage);
-
-		return restaurantRepository.findByNomContainingIgnoreCaseOrderById(nomRestaurant,pageable).stream().map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
 	}
 
 	public RestaurantDetailDto getRestaurantFeteDesMeres2019(Long idRestaurant) {
