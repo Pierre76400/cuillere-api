@@ -53,7 +53,7 @@ public class RestaurantService {
 
 	public List<RestaurantDto> rechercherRestaurant(String nomRestaurant) {
 		if(nomRestaurant==null || nomRestaurant.isEmpty()){
-			return StreamSupport.stream(restaurantRepository.findAll().spliterator(),false).map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
+			return new ArrayList<>();
 		}
 		return restaurantRepository.findByNomContainingIgnoreCase(nomRestaurant).stream().map(r->restaurantEntityToDto(r)).collect(Collectors.toList());
 	}
